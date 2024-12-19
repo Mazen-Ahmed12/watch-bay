@@ -6,7 +6,8 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { Movies } from "../../Data/MovieData";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Rating from "../Rating";
+import Rating from '@mui/material/Rating';
+
 
 function TopRated() {
   const [nextEl, setNextEl] = useState(null);
@@ -44,7 +45,7 @@ function TopRated() {
                     {movie.name}
                   </Link>
                   <div className="flex gap-2 text-start">
-                    <Rating value={movie.rating}/>
+                    <Rating name="read-only" value={movie.rating} precision={0.1} readOnly />
                   </div>
                 </div>
               </div>

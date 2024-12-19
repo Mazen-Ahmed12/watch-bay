@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 const YearData = [
-  { title: "Sort By Year" },
+  { title: "Year" },
   { title: "1700 - 1800" },
   { title: "1800 - 1900" },
   { title: "1900 - 2000" },
@@ -18,7 +18,7 @@ const YearData = [
 ];
 
 const TimesData = [
-  { title: "Sort By Hours" },
+  { title: "Hours" },
   { title: "1 - 5 Hours" },
   { title: "5 - 10 Hours" },
   { title: "10 - 15 Hours" },
@@ -26,7 +26,7 @@ const TimesData = [
 ];
 
 const RatesData = [
-  { title: "Sort By Rates" },
+  { title: "Rates" },
   { title: "1 Star" },
   { title: "2 Star" },
   { title: "3 Star" },

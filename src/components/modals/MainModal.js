@@ -1,8 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  IconButton,
-} from "@mui/material";
+import { Dialog, DialogContent, IconButton } from "@mui/material";
 
 import React, { useRef } from "react";
 import { IoClose } from "react-icons/io5";
@@ -17,8 +13,7 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       aria-describedby="modal-description"
       maxWidth="md"
       PaperProps={{
-        className:
-          "!opacity 0.5 rounded-lg !bg-black !bg-opacity-10 " ,
+        className: "!opacity 0.5 rounded-lg !bg-black !bg-opacity-10 ",
       }}
       fullScreen={true}
     >
@@ -33,7 +28,7 @@ function MainModal({ modalOpen, setModalOpen, children }) {
         <IoClose />
       </IconButton>
       <DialogContent dividers>
-        <div className="w-full h-3/4	pt-20	 flex-colo ">{children}</div>
+        <div className="w-full h-3/4	pt-20 mt-14	 flex-colo ">{children}</div>
       </DialogContent>
     </Dialog>
   );

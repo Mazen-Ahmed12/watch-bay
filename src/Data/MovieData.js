@@ -14,7 +14,7 @@ export const Movies = [
     image: "2.jpg",
     year: "1972",
     time: "2h 55m",
-    rating: 9.2,
+    rating: 2.2,
     reviews: "2.1M",
     summary:
       "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
