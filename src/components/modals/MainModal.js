@@ -2,7 +2,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
   IconButton,
 } from "@mui/material";
 
@@ -18,35 +17,25 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
       maxWidth="md"
-      fullWidth
+      PaperProps={{
+        className:
+          "!opacity 0.5 rounded-lg !bg-black !bg-opacity-10 " ,
+      }}
+      fullScreen={true}
     >
-      <DialogTitle
-        id="modal-title"
-        className="flex justify-between items-center"
+      <IconButton
+        onClick={() => setModalOpen(false)}
+        edge="end"
+        color="inherit"
+        aria-label="close"
+        ref={cancelButtonRef}
+        className=" transitions w-10 h-10 flex-colo text-base text-subMain !bg-white rounded-full hover:!bg-subMain hover:text-white !absolute top-3 right-5   "
       >
-        <span>Modal Title</span>
-        <IconButton
-          onClick={() => setModalOpen(false)}
-          edge="end"
-          color="inherit"
-          aria-label="close"
-          ref={cancelButtonRef}
-        >
-          <IoClose />
-        </IconButton>
-      </DialogTitle>
+        <IoClose />
+      </IconButton>
       <DialogContent dividers>
-        <div className="min-h-screen px-4">{children}</div>
+        <div className="w-full h-3/4	pt-20	 flex-colo ">{children}</div>
       </DialogContent>
-      <DialogActions>
-        <button
-          onClick={() => setModalOpen(false)}
-          type="button"
-          className="text-base text-subMain bg-white rounded-full hover:bg-subMain hover:text-white p-5"
-        >
-          Close
-        </button>
-      </DialogActions>
     </Dialog>
   );
 }

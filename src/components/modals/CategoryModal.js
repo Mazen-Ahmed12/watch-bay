@@ -16,7 +16,7 @@ function CategoryModal({ modalOpen, setModalOpen, category }) {
           />
           <button
             onClick={() => setModalOpen(false)}
-            className="w-full flex-rows gap-4 py-3 text-lg transitions hover:bg-dry border-2 border-subMain rounded bg-subMain text-white"
+            className="w-full flex-rows gap-4 py-3 mt-4 text-lg transitions hover:bg-dry border-3 border-subMain rounded bg-subMain text-white"
           >
             {category ? "Update" : "Add"}
           </button>
