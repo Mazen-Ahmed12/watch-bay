@@ -1,6 +1,5 @@
 import {
   Dialog,
-  DialogActions,
   DialogContent,
   IconButton,
 } from "@mui/material";
