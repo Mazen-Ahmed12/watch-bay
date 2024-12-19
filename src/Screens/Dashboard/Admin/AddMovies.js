@@ -7,47 +7,167 @@ import { UsersData } from "../../../Data/MovieData";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { ImUpload } from "react-icons/im";
+import { TextField, Typography } from "@mui/material";
 
 function AddMovie() {
-
-
+  
   return (
     <SideBar>
-   
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-bold">Create Movie</h2>
-        <div className="w-full grid md:grid-cols-2 gap-6">
-          <Input
-            label="Movie Title"
-            placeholder="Game of Thrones"
-            type="text"
-            bg={true}
-          />
-          <Input label="Hours" placeholder="2hr" type="text" bg={true} />
+        <div className="w-full  grid md:grid-cols-2 gap-6">
+          <div className="w-full flex-row  gap-6">
+            <Typography
+              variant="button"
+              className="text-border align-baseline !normal-case"
+            >
+              Movie Title
+            </Typography>
+            <TextField
+              placeholder="Game of Thrones"
+              type="text"
+              variant="outlined" // Options: "outlined", "filled", "standard"
+              fullWidth // Adds responsive width (if required)
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#4B5563", // Border color
+                    borderWidth: "1px",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#4B5563", // Border color on hover
+                    borderWidth: "1px",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#4B5563", // Border color when focused
+                    borderWidth: "1px",
+                  },
+                  backgroundColor: "#080A1A",
+                },
+                "& .MuiInputBase-input": {
+                  color: "#FFFFFF", // Text color inside the input
+                },
+              }}
+            />
+          </div>
+          <div className="w-full flex-row  gap-6">
+            <Typography
+              variant="button"
+              className="text-border align-baseline !normal-case"
+            >
+              hours
+            </Typography>
+            <TextField
+              placeholder="2hr"
+              type="text"
+              variant="outlined" // Options: "outlined", "filled", "standard"
+              fullWidth // Adds responsive width (if required)
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#4B5563", // Border color
+                    borderWidth: "1px",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#4B5563", // Border color on hover
+                    borderWidth: "1px",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#4B5563", // Border color when focused
+                    borderWidth: "1px",
+                  },
+                  backgroundColor: "#080A1A",
+                },
+                "& .MuiInputBase-input": {
+                  color: "#FFFFFF", // Text color inside the input
+                },
+              }}
+            />
+          </div>
         </div>
 
-        <div className="w-full grid md:grid-cols-2 gap-6">
-          <Input
-            label="Language Used"
-            placeholder="English"
-            type="text"
-            bg={true}
-          />
-          <Input
-            label="Year of Release"
-            placeholder="2022"
-            type="number"
-            bg={true}
-          />
+        <div className="w-full  grid md:grid-cols-2 gap-6">
+          <div className="w-full flex-row  gap-6">
+            <Typography
+              variant="button"
+              gutterBottom
+              className="text-border align-baseline !normal-case"
+            >
+              Language Used
+            </Typography>
+            <TextField
+              placeholder="Game of Thrones"
+              type="text"
+              variant="outlined" // Options: "outlined", "filled", "standard"
+              fullWidth // Adds responsive width (if required)
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#4B5563", // Border color
+                    borderWidth: "1px",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#4B5563", // Border color on hover
+                    borderWidth: "1px",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#4B5563", // Border color when focused
+                    borderWidth: "1px",
+                  },
+                  backgroundColor: "#080A1A",
+                },
+                "& .MuiInputBase-input": {
+                  color: "#FFFFFF", // Text color inside the input
+                },
+              }}
+            />
+          </div>
+          <div className="w-full flex-row  gap-6">
+            <Typography
+              variant="button"
+              className="text-border align-baseline !normal-case"
+            >
+              Year of Release
+            </Typography>
+            <TextField
+              placeholder="2022"
+              type="number"
+              variant="outlined" // Options: "outlined", "filled", "standard"
+              fullWidth // Adds responsive width (if required)
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#4B5563", // Border color
+                    borderWidth: "1px",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#4B5563", // Border color on hover
+                    borderWidth: "1px",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#4B5563", // Border color when focused
+                    borderWidth: "1px",
+                  },
+                  backgroundColor: "#080A1A",
+                },
+                "& .MuiInputBase-input": {
+                  color: "#FFFFFF", // Text color inside the input
+                },
+              }}
+            />
+          </div>
         </div>
 
         {/* IMAGES */}
         <div className="w-full grid md:grid-cols-2 gap-6">
           {/* img without title */}
           <div className="flex flex-col gap-2">
-            <p className="text-border font-semibold text-sm">
+            <Typography
+              variant="button"
+              className="text-border align-baseline !normal-case"
+            >
               Image without Title
-            </p>
+            </Typography>
             <Uploader />
             <div className="w-32 h-32 p-2 bg-main border border-border rounded">
               <img
@@ -59,9 +179,12 @@ function AddMovie() {
           </div>
           {/* image with title */}
           <div className="flex flex-col gap-2">
-            <p className="text-border font-semibold text-sm">
+            <Typography
+              variant="button"
+              className="text-border align-baseline !normal-case"
+            >
               Image with Title
-            </p>
+            </Typography>
             <Uploader />
             <div className="w-32 h-32 p-2 bg-main border border-border rounded">
               <img
@@ -91,9 +214,7 @@ function AddMovie() {
         </div>
         {/* CASTS */}
         <div className="w-full grid lg:grid-cols-2 gap-6 items-start ">
-          <button
-            className="w-full py-4 bg-main border border-subMain border-dashed text-white rounded"
-          >
+          <button className="w-full py-4 bg-main border border-subMain border-dashed text-white rounded">
             Add Cast
           </button>
           <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-4">
@@ -112,10 +233,7 @@ function AddMovie() {
                   <button className="w-6 h-6 flex-colo bg-dry border border-border text-subMain rounded">
                     <MdDelete />
                   </button>
-                  <button
-                   
-                    className="w-6 h-6 flex-colo bg-dry border border-border text-green-600 rounded"
-                  >
+                  <button className="w-6 h-6 flex-colo bg-dry border border-border text-green-600 rounded">
                     <FaEdit />
                   </button>
                 </div>
