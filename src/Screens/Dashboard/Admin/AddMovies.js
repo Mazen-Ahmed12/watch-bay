@@ -8,154 +8,21 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { ImUpload } from "react-icons/im";
 import { TextField, Typography } from "@mui/material";
+import { TextFields } from "components/Textfield";
 
 function AddMovie() {
-  
   return (
     <SideBar>
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-bold">Create Movie</h2>
         <div className="w-full  grid md:grid-cols-2 gap-6">
-          <div className="w-full flex-row  gap-6">
-            <Typography
-              variant="button"
-              className="text-border align-baseline !normal-case"
-            >
-              Movie Title
-            </Typography>
-            <TextField
-              placeholder="Game of Thrones"
-              type="text"
-              variant="outlined" // Options: "outlined", "filled", "standard"
-              fullWidth // Adds responsive width (if required)
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#4B5563", // Border color
-                    borderWidth: "1px",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#4B5563", // Border color on hover
-                    borderWidth: "1px",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#4B5563", // Border color when focused
-                    borderWidth: "1px",
-                  },
-                  backgroundColor: "#080A1A",
-                },
-                "& .MuiInputBase-input": {
-                  color: "#FFFFFF", // Text color inside the input
-                },
-              }}
-            />
-          </div>
-          <div className="w-full flex-row  gap-6">
-            <Typography
-              variant="button"
-              className="text-border align-baseline !normal-case"
-            >
-              hours
-            </Typography>
-            <TextField
-              placeholder="2hr"
-              type="text"
-              variant="outlined" // Options: "outlined", "filled", "standard"
-              fullWidth // Adds responsive width (if required)
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#4B5563", // Border color
-                    borderWidth: "1px",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#4B5563", // Border color on hover
-                    borderWidth: "1px",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#4B5563", // Border color when focused
-                    borderWidth: "1px",
-                  },
-                  backgroundColor: "#080A1A",
-                },
-                "& .MuiInputBase-input": {
-                  color: "#FFFFFF", // Text color inside the input
-                },
-              }}
-            />
-          </div>
+          <TextFields title="Movie Title" placeholder="Game of Thrones" type="text"/>
+          <TextFields title="Hours" placeholder="2hr" type="text" />
         </div>
 
         <div className="w-full  grid md:grid-cols-2 gap-6">
-          <div className="w-full flex-row  gap-6">
-            <Typography
-              variant="button"
-              gutterBottom
-              className="text-border align-baseline !normal-case"
-            >
-              Language Used
-            </Typography>
-            <TextField
-              placeholder="Game of Thrones"
-              type="text"
-              variant="outlined" // Options: "outlined", "filled", "standard"
-              fullWidth // Adds responsive width (if required)
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#4B5563", // Border color
-                    borderWidth: "1px",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#4B5563", // Border color on hover
-                    borderWidth: "1px",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#4B5563", // Border color when focused
-                    borderWidth: "1px",
-                  },
-                  backgroundColor: "#080A1A",
-                },
-                "& .MuiInputBase-input": {
-                  color: "#FFFFFF", // Text color inside the input
-                },
-              }}
-            />
-          </div>
-          <div className="w-full flex-row  gap-6">
-            <Typography
-              variant="button"
-              className="text-border align-baseline !normal-case"
-            >
-              Year of Release
-            </Typography>
-            <TextField
-              placeholder="2022"
-              type="number"
-              variant="outlined" // Options: "outlined", "filled", "standard"
-              fullWidth // Adds responsive width (if required)
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#4B5563", // Border color
-                    borderWidth: "1px",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#4B5563", // Border color on hover
-                    borderWidth: "1px",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#4B5563", // Border color when focused
-                    borderWidth: "1px",
-                  },
-                  backgroundColor: "#080A1A",
-                },
-                "& .MuiInputBase-input": {
-                  color: "#FFFFFF", // Text color inside the input
-                },
-              }}
-            />
-          </div>
+          <TextFields title="Language Used" placeholder="English" type="text"/>
+          <TextFields title="Year of Release" placeholder="2022" type="number"/>
         </div>
 
         {/* IMAGES */}
