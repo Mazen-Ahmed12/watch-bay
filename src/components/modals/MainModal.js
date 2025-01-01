@@ -11,7 +11,6 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       onClose={() => setModalOpen(false)}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
-      maxWidth="md"
       PaperProps={{
         className: "!opacity 0.5 rounded-lg !bg-black !bg-opacity-10 ",
       }}
@@ -27,8 +26,8 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       >
         <IoClose />
       </IconButton>
-      <DialogContent dividers>
-        <div className="w-full h-3/4	pt-20 mt-14	 flex-colo ">{children}</div>
+      <DialogContent dividers className="flex-colo">
+        <div className="w-full h-max flex-colo pt-24 ">{children}</div>
       </DialogContent>
     </Dialog>
   );
