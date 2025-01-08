@@ -4,8 +4,8 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GoEye } from "react-icons/go";
 
-const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
-const Text = "text-sm text-left leading-6 whitespace-nowrap px-4 py-3";
+const Head = "text-xs text-left text-main font-semibold px-4 py-2 uppercase";
+const Text = "text-xs text-left leading-6 whitespace-nowrap px-2 py-3";
 
 // rows
 const Rows = (movie, i, admin) => {
@@ -56,8 +56,8 @@ const Rows = (movie, i, admin) => {
 // table
 function Table({ data, admin }) {
   return (
-    <div className="overflow-x-scroll overflow-hidden relative w-full">
-      <table className="w-full table-auto border border-border divide-y divide-border">
+    <div className="overflow-x-auto">
+      <table className="w-full table-auto table-layout-fixed border border-border divide-y divide-border">
         <thead>
           <tr className="bg-dryGray">
             <th scope="col" className={`${Head}`}>
