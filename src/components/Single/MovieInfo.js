@@ -36,7 +36,7 @@ function MovieInfo({ movie, setModalOpen }) {
               </div>
               {/* description */}
               <p className="text-text text-sm leading-7">{movie?.desc}</p>
-              <div className="grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg">
+              <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 p-6 bg-main border border-gray-800 rounded-lg">
                 {/* share */}
                 <div className="col-span-1 flex-colo border-r border-border">
                   <button
@@ -46,15 +46,8 @@ function MovieInfo({ movie, setModalOpen }) {
                     <FaShareAlt />
                   </button>
                 </div>
-                {/* language */}
-                <div className="col-span-2 flex-colo font-medium text-sm">
-                  <p>
-                    Language :{" "}
-                    <span className="ml-2 truncate">{movie?.language}</span>
-                  </p>
-                </div>
                 {/* watch button */}
-                <div className="sm:col-span-2 col-span-3 flex justify-end font-medium text-sm">
+                <div className="sm:col-span-2 col-span-2 flex justify-end font-medium text-sm">
                   <Link
                     to={`/watch/${movie?.name}`}
                     className="bg-dry py-4 hover:bg-subMain transitions border-2 border-subMain rounded-full flex-rows gap-4 w-full sm:py-3"
