@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Subscriptions,
   Favorite,
@@ -7,8 +7,11 @@ import {
 } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
+import MenuDrawer from "../../components/Drawer/MenuDrawer";
+import { SidebarContext } from "../../Context/DrawerContext";
 
 function MobileFooter() {
+  const {mobileDrawer, toggleDrawer} = useContext(SidebarContext)
   const active = "bg-white !text-main";
   const inActive =
     "transitions text-2xl flex-colo hover:bg-white hover:text-main text-white rounded-md px-4 py-3";
@@ -17,8 +20,8 @@ function MobileFooter() {
     isActive ? `${active} ${inActive}` : inActive;
   return (
     <>
-      <div className="flex-btn h-full bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full">
-        {/* Drawer */}
+      <div className="flex flex-col h-full justify-between align-middle bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full">
+        <MenuDrawer drawerOpen={mobileDrawer} toggleDrawer={toggleDrawer}/>
       </div>
       <footer className="lg:hidden fixed z-50 bottom-0 w-full px-1">
         <div className="bg-dry rounded-md flex-btn w-full p-1">
@@ -36,7 +39,7 @@ function MobileFooter() {
           <NavLink to="/login" className={Hover}>
             <Login />
           </NavLink>
-          <Button className={`${inActive} hover:!text-main !text-white`}>
+          <Button onClick={toggleDrawer} className={`${inActive} hover:!text-main !text-white`}>
             <Menu />
           </Button>
         </div>
