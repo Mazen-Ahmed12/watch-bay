@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./Navbar/NavBar";
 import Footer from "./footer/Footer";
+import MobileFooter from "./footer/MobileFooter";
 
 function Layout({ children }) {
   return (
@@ -9,6 +10,8 @@ function Layout({ children }) {
         <NavBar />
         {children}
         <Footer />
+        {/* mobile footer*/} 
+        <MobileFooter/>
       </div>
     </>
   );

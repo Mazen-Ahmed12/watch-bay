@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Titles from "../Titles";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { Message, Select } from "../UsedInputs";
-import Rating from "../Rating";
+import Rating from '@mui/material/Rating';
 import { UsersData } from "../../Data/MovieData";
 
 function MovieRates({ movie }) {
@@ -14,7 +14,7 @@ function MovieRates({ movie }) {
     {
       title: "1 - Fair",
       value: 1,
-    },
+    },  
     {
       title: "2 - Good",
       value: 2,
@@ -33,7 +33,7 @@ function MovieRates({ movie }) {
     },
   ];
 
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(0);
 
   return (
     <div className="my-12">
@@ -55,7 +55,7 @@ function MovieRates({ movie }) {
               onChange={(e) => setRating(e.target.value)}
             />
             <div className="flex mt-4 text-lg gap-2 text-star">
-              <Rating value={rating} />
+              <Rating name="rating" value={rating} readOnly />
             </div>
           </div>
           {/* message */}
@@ -70,7 +70,7 @@ function MovieRates({ movie }) {
           <h3 className="text-xl text-text font-semibold">Reviews (56)</h3>
           <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
             {UsersData.map((user, i) => (
-              <div className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
+              <div key={i} className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
                 <div className="col-span-2 bg-main hidden md:block">
                   <img
                     src={`/Movies/${user ? user.image : "user.jpg"}`}
@@ -80,13 +80,13 @@ function MovieRates({ movie }) {
                 </div>
                 <div className="col-span-7 flex flex-col gap-2">
                   <h2>{user?.fullName}</h2>
-                  <p className="text-xs leading-6 font-medium text-text">
+                  <p className="text-xs leading-5 font-medium text-text">
                     {user?.message}
                   </p>
                 </div>
                 {/* rates */}
-                <div className="col-span-3 flex-rows border-l border-border text-xs gap-1 text-star">
-                  <Rating value={user?.rate} />
+                <div className="col-span-3 flex-rows border-l pl-3 border-border text-xs gap-1 text-star">
+                  <Rating name="user-rating" value={user?.rate} precision={0.1} readOnly />
                 </div>
               </div>
             ))}
