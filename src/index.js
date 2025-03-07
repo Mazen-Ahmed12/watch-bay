@@ -13,7 +13,7 @@ const root = createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter  basename="/watch-bay">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>

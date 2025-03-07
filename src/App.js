@@ -26,7 +26,7 @@ function App() {
   return (
     <DrawerContext>
       <ScrollOnTop>
-        <Routes>
+        <Routes basename="/watch-bay">
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/about-us" element={<AboutUs />} />
