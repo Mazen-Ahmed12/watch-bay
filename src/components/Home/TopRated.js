@@ -50,7 +50,7 @@ function TopRated() {
             <SwiperSlide key={index}>
               <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden flex-colo">
                 <img
-                  src={`/movies/${movie.image}`}
+                  src={`${process.env.PUBLIC_URL}/movies/${movie.image}`}
                   alt="movie.name"
                   className="wfull h-full object-cover rounded-lg"
                 />

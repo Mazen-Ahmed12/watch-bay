@@ -27,7 +27,7 @@ function Promos() {
           </div>
         </div>
         <div>
-          <img src="/mobileView.jpg" alt="mobile View" className="w-3/5 h-1/2 mx-auto object-fit"/>
+          <img src={`${process.env.PUBLIC_URL}/mobileView.jpg`} alt="mobile View" className="w-3/5 h-1/2 mx-auto object-fit"/>
         </div>
       </div>
     </div>

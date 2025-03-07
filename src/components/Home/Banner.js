@@ -30,7 +30,7 @@ function Banner() {
               className="relative rounded overflow-hidden flex "
             >
               <img
-                srcSet={`/movies/${movie.image}`}
+                srcSet={`${process.env.PUBLIC_URL}/movies/${movie.image}`}
                 alt={movie.name}
                 className="w-3/5 h-full object-fit mx-auto  "
               />

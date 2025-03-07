@@ -33,7 +33,7 @@ function WatchPage() {
         {play ? (
           <video controls autoPlay={play} className="w-full h-full rounded">
             <source
-              src="/images/movie.mp4"
+              src={`${process.env.PUBLIC_URL}/images/movie.mp4`}
               type="video/mp4"
               title={movie?.name}
             />

@@ -16,7 +16,7 @@ function MovieInfo({ movie, setModalOpen }) {
         <div className="container px-3 mx-auto 2xl:px-32 xl:grid grid-cols-3 flex-colo py-10 lg:py-20 gap-8">
           <div className="xl:col-span-1 w-full xl:order-none order-last h-header bg-dry border border-gray-800 rounded-lg overflow-hidden">
             <img
-              src={`/movies/${movie?.image}`}
+              src={`${process.env.PUBLIC_URL}/movies/${movie?.image}`}
               alt={movie?.name}
               className="w-full h-full object-cover"
             />

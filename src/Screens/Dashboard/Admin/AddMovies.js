@@ -61,7 +61,7 @@ function AddMovie() {
             <Uploader />
             <div className="w-32 h-32 p-2 bg-main border border-border rounded">
               <img
-                src="/movies/14.jpg"
+                src={`${process.env.PUBLIC_URL}/movies/14.jpg`}
                 alt=""
                 className="w-full h-full object-cover rounded"
               />
@@ -78,7 +78,7 @@ function AddMovie() {
             <Uploader />
             <div className="w-32 h-32 p-2 bg-main border border-border rounded">
               <img
-                src="/movies/13.jpg"
+                src={`${process.env.PUBLIC_URL}/movies/13.jpg`}
                 alt=""
                 className="w-full h-full object-cover rounded"
               />
@@ -117,7 +117,7 @@ function AddMovie() {
                 className="p-2 italic text-xs text-text rounded flex-colo bg-main border border-border"
               >
                 <img
-                  src={`/movies/${user.image ? user.image : "user.png"}`}
+                  src={`${process.env.PUBLIC_URL}/movies/${user.image ? user.image : "user.png"}`}
                   alt={user.fullName}
                   className="w-full h-24 object-cover rounded mb-2"
                 />
