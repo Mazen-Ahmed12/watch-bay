@@ -15,7 +15,7 @@ function NavBar() {
           <div className="col-span-1 lg:block hidden">
             <Link to="/">
               <img
-                src={"/moviesPlay.jpg"}
+                src="moviesPlay.jpg"
                 alt="logo"
                 className="w-full h-16 object-contain"
               />

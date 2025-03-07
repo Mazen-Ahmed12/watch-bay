@@ -51,7 +51,7 @@ function WatchPage() {
             <img
               src={
                 movie?.image
-                  ? `/movies/${movie.image}`
+                  ? `${process.env.PUBLIC_URL}/movies/${movie.image}`
                   : "images/user.png"
               }
               alt={movie?.name}
