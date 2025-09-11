@@ -15,9 +15,9 @@ function NavBar() {
           <div className="col-span-1 lg:block hidden">
             <Link to="/">
               <img
-                src={`${process.env.PUBLIC_URL}/moviesPlay.jpg`}
+                src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
                 alt="logo"
-                className="w-full h-16 object-contain"
+                className="w-full h-16 object-cover"
               />
             </Link>
           </div>

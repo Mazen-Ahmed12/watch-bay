@@ -40,7 +40,7 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
         <div className="w-full flex-btn h-16 px-6 py-4 bg-dry">
           <Link to="/" onClick={toggleDrawer}>
             <img
-              src={`${process.env.PUBLIC_URL}/moviesPlay.jpg`}
+              src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
               alt="logo"
               className="w-full h-12 object-contain"
             />

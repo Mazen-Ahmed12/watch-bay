@@ -11,12 +11,16 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       onClose={() => setModalOpen(false)}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
-      fullScreen={false}
-      maxWidth="xs"
+      maxWidth={false}
       PaperProps={{
         className: "!opacity-0.5 rounded-lg !bg-black !bg-opacity-10",
+        style: {
+          width: 'auto',
+          maxWidth: 'calc(100% - 32px)',
+          maxHeight: 'calc(100vh - 64px)'
+        }
       }}
-      className="!h-full !w-full"
+      className="flex items-center justify-center"
     >
       <IconButton
         onClick={() => setModalOpen(false)}
@@ -28,8 +32,8 @@ function MainModal({ modalOpen, setModalOpen, children }) {
       >
         <IoClose />
       </IconButton>
-      <DialogContent dividers className="flex-colo !p-0 ">
-        <div className="w-full h-full flex-colo">{children}</div>
+      <DialogContent className="p-0 bg-transparent">
+        {children}
       </DialogContent>
     </Dialog>
   );

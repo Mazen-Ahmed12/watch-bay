@@ -104,9 +104,9 @@ function Footer() {
           <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-1 1g:col-span-3 m-auto">
             <Link to="/">
               <img
-                src={`${process.env.PUBLIC_URL}/moviesPlay.jpg`}
+                src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
                 alt="logo"
-                className="w-2/4 h-15 object-contain"
+                className="w-2/4 h-15 object-cover"
               />
             </Link>
             <p className="leading-7 text-sm text-border mt-3">
