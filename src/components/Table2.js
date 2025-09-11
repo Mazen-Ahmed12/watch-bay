@@ -16,7 +16,7 @@ const Rows = (data, i, users, OnEditFunction) => {
             <div className="w-12 p-1 bg-dry border border-border h-12 rounded overflow-hidden">
               <img
                 className="h-full w-full object-cover"
-                src={`${process.env.PUBLIC_URL}/movies/${data.image ? data.image : "moviesPlay.jpg"}`}
+                src={`${process.env.PUBLIC_URL}/images/${data.image ? data.image : "moviesPlay.jpg"}`}
                 alt={data?.fullName}
               />
             </div>

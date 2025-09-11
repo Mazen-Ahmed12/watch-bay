@@ -48,7 +48,7 @@ function NavBar() {
             <NavLink to="/contact-us" className={Hover}>
               Contact Us
             </NavLink>
-            <NavLink to="/Favorities " className={`${Hover} relative`}>
+            <NavLink to="/favorites " className={`${Hover} relative`}>
               <MdFavorite className="w-8 h-8 hover:text-subMain" />
               <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
                 2

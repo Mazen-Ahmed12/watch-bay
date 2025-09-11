@@ -8,7 +8,7 @@ function Movie({ movie }) {
       <div className="border border-borderp-1 hover:scale-95 transitions relative rounded overflow-hidden">
         <Link to={`/movie/${movie.name}`} className="w-full">
           <img
-            srcSet={`${process.env.PUBLIC_URL}/movies/${movie.image}`}
+            srcSet={`${process.env.PUBLIC_URL}/images/${movie.image}`}
             alt={movie.name}
             className="w-full h-64 object-fit"
           />

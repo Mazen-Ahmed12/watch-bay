@@ -73,7 +73,7 @@ function MovieRates({ movie }) {
               <div key={i} className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
                 <div className="col-span-2 bg-main hidden md:block">
                   <img
-                    src={`${process.env.PUBLIC_URL}/movies/${user ? user.image : "user.jpg"}`}
+                    src={`${process.env.PUBLIC_URL}/images/${user ? user.image : "user.jpg"}`}
                     alt={user.fullName}
                     className="w-full h-24 rounded-lg object-cover"
                   />

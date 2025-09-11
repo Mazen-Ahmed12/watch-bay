@@ -37,7 +37,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/password" element={<Password />} />
-          <Route path="/favorities" element={<FavoritesMovies />} />
+          <Route path="/favorites" element={<FavoritesMovies />} />
           <Route path="/movieslist" element={<MoviesList />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/categories" element={<Categories />} />

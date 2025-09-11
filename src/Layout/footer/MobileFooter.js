@@ -28,7 +28,7 @@ function MobileFooter() {
           <NavLink to="/movies" className={Hover}>
             <Subscriptions />
           </NavLink>
-          <NavLink to="/favorities" className={Hover}>
+          <NavLink to="/favorites" className={Hover}>
             <div className="relative">
             <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
               2
