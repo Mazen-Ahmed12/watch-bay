@@ -1,62 +1,114 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Movies } from "../../Data/MovieData";
-import MoviesInfo from "../MoviesInfo";
 import { Link } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
+import { tmdbAPI } from '../../api/tmdb';
+
 
 function Banner() {
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTrendingMovies = async () => {
+      try {
+        setLoading(true);
+        const data = await tmdbAPI.getTrending('day');
+        setTrendingMovies(data.results.slice(0, 8));
+      } catch (err) {
+        console.error('Error fetching trending movies:', err);
+        setError('Failed to load movies. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTrendingMovies();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-96 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-96 flex items-center justify-center text-red-500">
+        {error}
+      </div>
+    );
+  }
+
   return (
     <div className="relative flex justify-center items-center">
-        <Swiper
-          loop={true}
-          slidesPerView={1}
-          centeredSlides={true}
-          // autoplay={{
-          //   delay: 3000,
-          //   disableOnInteraction: false,
-          // }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="w-full xl:h-128 lg:h-112 h-96  "
-        >
-          {Movies.slice(0, 8).map((movie, index) => (
-            <SwiperSlide
-              key={index}
-              className="relative rounded overflow-hidden flex "
-            >
+      <Swiper
+        loop={true}
+        slidesPerView={1}
+        centeredSlides={true}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        speed={2000}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="w-full xl:h-128 lg:h-112 h-98"
+      >
+        {trendingMovies.map((movie) => (
+          <SwiperSlide
+            key={movie.id}
+            className="relative overflow-hidden"
+          >
+            <div className="relative w-full h-full">
               <img
-                srcSet={`${process.env.PUBLIC_URL}/movies/${movie.image}`}
-                alt={movie.name}
-                className="w-3/5 h-full object-fit mx-auto  "
+                src={movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : ''}
+                alt={movie.title || 'Movie'}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.onerror = null;
+                }}
               />
-              <div className="w-3/5 absolute sl:pl-52 sm:pl-32 pl-8 top-0 bottom-0 right-0 left-0 flex flex-col justify-center lg:gap-8 md:gap-5 gap-4 ">
-                <h1 className="xl:text-2xl sm:text-xl text-xl font-bold text-text">
-                  {movie.name}
-                </h1>
-                <div className="flex gap-5 items-center text-text">
-                  <MoviesInfo movie={movie} />
-                </div>
-                <div className='flex gap-5 item-center'>
-                  <Link
-                  to={`/movie/${movie.name}`}
-                  className='bg-subMain hover:text-main transitions text-white px-8 py-3 rounded font-medium sm:text-sm text-xs'
-                  >
-                    watch
-                  </Link>
-                <button className='bg-white hover:text-subMain  transitions text-white px-4 py-3 rounded text-sm bg-opacity-30'>
-                <MdFavorite />
-                </button>
+              <div className="absolute inset-0 bg-gradient-to-t from-main to-transparent"></div>
+              <div className="container mx-auto px-4 absolute bottom-0 left-0 right-0 z-10">
+                <div className="flex flex-col items-start gap-4 pb-12">
+                  <h1 className="text-4xl font-bold text-white">
+                    {movie.title}
+                  </h1>
+                  <div className="flex items-center gap-4">
+                    <span className="text-white">{movie.release_date?.substring(0, 4)}</span>
+                    <span className="text-white">⭐ {movie.vote_average?.toFixed(1)}/10</span>
+                    <span className="text-white">{movie.adult ? '18+' : 'All'}</span>
+                  </div>
+                  <p className="text-white max-w-2xl line-clamp-3">
+                    {movie.overview}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <Link
+                      to={`/movie/${movie.id}`}
+                      className="bg-main text-white px-6 py-2 rounded-md hover:bg-transparent hover:border hover:border-main transition-all duration-300"
+                    >
+                      Watch Now
+                    </Link>
+                    <Link to={`/favorites`} className="bg-transparent border border-main text-white px-6 py-2 rounded-md hover:bg-main transition-all duration-300">
+                      <MdFavorite className="inline-block mr-2" />
+                      Add to Favorites
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   )
 }
 
