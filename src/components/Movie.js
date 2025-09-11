@@ -1,26 +1,20 @@
-import React from "react";
 import { MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function Movie({ movie }) {
   return (
-    <>
-      <div className="border border-borderp-1 hover:scale-95 transitions relative rounded overflow-hidden">
-        <Link to={`/movie/${movie.name}`} className="w-full">
-          <img
-            srcSet={`${process.env.PUBLIC_URL}/images/${movie.image}`}
-            alt={movie.name}
-            className="w-full h-64 object-fit"
-          />
-        </Link>
-        <div className="absolute flex-btn gap-2 bottom-0 right-0 left-0 bg-main bg-opacity-60 text-white px-4 py-3">
-          <h3 className="font-semibold truncate">{movie?.name}</h3>
-          <button className="h-9 w-9 text-sm flex-colo transitions hover:bg-transparent border-subMain rounded-md bg-subMain text-white">
-            <MdFavorite />
-          </button>
-        </div>
+    <div className="border border-border p-1 hover:scale-95 transition-all duration-300 relative rounded overflow-hidden">
+      <Link to={`/movie/${movie.id}`} className="w-full block">
+        <img
+          src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : ''}
+          alt={movie.title}
+          className="w-full h-72 object-cover"
+        />
+      </Link>
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+        <h3 className="font-semibold text-white truncate">{movie.title}</h3>
       </div>
-    </>
+    </div>
   );
 }
 

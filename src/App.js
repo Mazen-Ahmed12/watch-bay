@@ -20,6 +20,7 @@ import Aos from "aos";
 import NotFound from "./Screens/NotFound";
 import ScrollOnTop from "./ScrollOnTop";
 import DrawerContext from "./Context/DrawerContext";
+import PopularMoviesPage from "./Screens/PopularMoviesPage";
 
 function App() {
   Aos.init();
@@ -43,6 +44,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/users" element={<Users />} />
           <Route path="/AddMovie" element={<AddMovie />} />
+          <Route path="/popular-movies" element={<PopularMoviesPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollOnTop>
