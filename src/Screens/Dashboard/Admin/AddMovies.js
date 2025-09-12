@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Uploader from "../../../components/Uploader";
-import { Message, Select } from "../../../components/UsedInputs";
-import SideBar from "../SideBar";
-import { CategoriesData } from "../../../Data/CategoriesData";
-import { UsersData } from "../../../Data/MovieData";
-import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
-import { ImUpload } from "react-icons/im";
 import { Typography } from "@mui/material";
 import { TextFields } from "components/Textfield";
 import CastsModal from "components/modals/CastsModal";
+import { useEffect, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { ImUpload } from "react-icons/im";
+import { MdDelete } from "react-icons/md";
+import { CategoriesData } from "../../../Data/CategoriesData";
+import { UsersData } from "../../../Data/MovieData";
+import Uploader from "../../../components/Uploader";
+import { Message, Select } from "../../../components/UsedInputs";
+import SideBar from "../SideBar";
 
 function AddMovie() {
   const [modalOpen, setModalOpen] = useState(false);

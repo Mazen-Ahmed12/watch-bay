@@ -1,37 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import { tmdbAPI } from "../api/tmdb";
+import ShareMovieModal from "../components/modals/ShareModal";
 import MovieCasts from "../components/Single/MovieCasts";
 import MovieInfo from "../components/Single/MovieInfo";
 import MovieRates from "../components/Single/MovieRates";
 import Layout from "../Layout/Layout";
-import ShareMovieModal from "../components/modals/ShareModal";
-import { tmdbAPI } from "../api/tmdb";
-import { FaSpinner } from "react-icons/fa";
 
 function SingleMovie() {
   const [modalOpen, setModalOpen] = useState(false);
   const [movie, setMovie] = useState(null);
+  const [reviews, setReviews] = useState({ results: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchMovieDetails = async () => {
+    const fetchMovieData = async () => {
       try {
         setLoading(true);
-        const data = await tmdbAPI.getMovieDetails(id);
-        setMovie(data);
+        // Fetch movie details and reviews in parallel
+        const [movieData, reviewsData] = await Promise.all([
+          tmdbAPI.getMovieDetails(id),
+          tmdbAPI.getMovieReviews(id)
+        ]);
+        setMovie(movieData);
+        setReviews(reviewsData);
       } catch (err) {
-        console.error('Error fetching movie details:', err);
-        setError('Failed to load movie. Please try again later.');
+        console.error('Error fetching movie data:', err);
+        setError('Failed to load movie data. Please try again later.');
       } finally {
         setLoading(false);
       }
     };
 
     if (id) {
-      fetchMovieDetails();
+      fetchMovieData();
     } else {
       navigate('/');
     }
@@ -74,13 +80,12 @@ function SingleMovie() {
         movie={{
           ...movie,
           name: movie.title,
-          image: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null
         }}
       />
       <MovieInfo 
         movie={{
-          ...movie,
-          name: movie.title,
+        ...movie,
+        name: movie.title,
           image: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
           backdrop: movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : null,
           release_date: movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A',
@@ -90,8 +95,8 @@ function SingleMovie() {
         setModalOpen={setModalOpen} 
       />
       <div className="container mx-auto min-h-screen px-2 my-6">
-        <MovieCasts movieId={movie.id} />
-        <MovieRates movie={movie} />
+        <MovieCasts casts={movie.credits?.cast || []} />
+        <MovieRates movie={movie} reviews={reviews} />
       </div>
     </Layout>
   );

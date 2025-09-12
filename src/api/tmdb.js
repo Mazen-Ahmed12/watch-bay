@@ -79,4 +79,13 @@ export const tmdbAPI = {
     );
     return await response.json();
   },
+
+  // Get movie reviews
+  getMovieReviews: async (movieId) => {
+    const response = await fetch(
+      `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`,
+      { headers }
+    );
+    return await response.json();
+  },
 };

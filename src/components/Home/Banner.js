@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Link } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { tmdbAPI } from '../../api/tmdb';
 
 

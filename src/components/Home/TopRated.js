@@ -1,22 +1,38 @@
-import React, { useState } from "react";
-import Titles from "../Titles";
-import {
-  BsBookmarkStarFill,
-  BsChevronLeft,
-  BsChevronRight,
-} from "react-icons/bs";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
-import { Movies } from "../../Data/MovieData";
+import Rating from "@mui/material/Rating";
+import { useEffect, useState } from "react";
+import { BsBookmarkStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Rating from "@mui/material/Rating";
+import { Autoplay, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { tmdbAPI } from "../../api/tmdb";
+import Titles from "../Titles";
 
 function TopRated() {
   const [nextEl, setNextEl] = useState(null);
   const [prevEl, setPrevEl] = useState(null);
-  const className =
-    "hover:bg-dry transitions text-sm rouned w-8 h-8 flex-colo bg-subMain text-white";
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  const className = "hover:bg-dry transitions text-sm rouned w-8 h-8 flex-colo bg-subMain text-white";
+
+  useEffect(() => {
+    const fetchTopRatedMovies = async () => {
+      try {
+        setLoading(true);
+        const data = await tmdbAPI.getTopRatedMovies();
+        setTopRatedMovies(data.results);
+      } catch (err) {
+        console.error("Error fetching top rated movies:", err);
+        setError("Failed to load top rated movies. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopRatedMovies();
+  }, []);
   return (
     <div className="my-16">
       <Titles title="Top Rated" Icon={BsBookmarkStarFill} />
@@ -46,36 +62,48 @@ function TopRated() {
             },
           }}
         >
-          {Movies.map((movie, index) => (
-            <SwiperSlide key={index}>
-              <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden flex-colo">
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/${movie.image}`}
-                  alt="movie.name"
-                  className="wfull h-full object-cover rounded-lg"
-                />
-                <div className="px-4 hoveres gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0">
-                  <button className="w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white">
-                    <FaHeart />
-                  </button>
-                  <Link
-                    className="font-semibold text-lx trancuted line-clamp-2"
-                    to={`/movie/${movie.name}`}
-                  >
-                    {movie.name}
-                  </Link>
-                  <div className="flex gap-2 text-start">
-                    <Rating
-                      name="read-only"
-                      value={movie.rating}
-                      precision={0.1}
-                      readOnly
-                    />
+          {loading ? (
+            <div className="col-span-4 flex items-center justify-center">
+              <p>Loading top rated movies...</p>
+            </div>
+          ) : error ? (
+            <div className="col-span-4 text-center text-subMain">
+              <p>{error}</p>
+            </div>
+          ) : (
+            topRatedMovies.map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden flex-colo">
+                  <img
+                    src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : ''}
+                    alt={movie.title}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="px-4 hoveres gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center">
+                    <button className="w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white">
+                      <FaHeart />
+                    </button>
+                    <Link
+                      className="font-semibold text-xl trancuted line-clamp-2 text-white"
+                      to={`/movie/${movie.id}`}
+                    >
+                      {movie.title}
+                    </Link>
+                    <div className="flex gap-2">
+                      <Rating
+                        name="read-only"
+                        value={movie.vote_average / 2}
+                        precision={0.5}
+                        readOnly
+                        size="small"
+                      />
+                      <span className="text-white">({movie.vote_average.toFixed(1)})</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
         <div className="w-full px-1 flex-rows gap-6 pt-12">
           <button className={className} ref={(node) => setPrevEl(node)}>

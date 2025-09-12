@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { tmdbAPI } from '../../api/tmdb';
-import Movie from '../Movie';
 import Loader from '../Loader';
+import Movie from '../Movie';
 import Titles from '../Titles';
 
 function PopularMovies() {
@@ -49,11 +49,6 @@ function PopularMovies() {
         </div>
       )}
       
-      {/* <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
-        {Movies.slice(0, 8).map((movie, index) => (
-          <Movie key={index} movie={movie}/>
-          ))}
-          </div> */}
           <Link 
             to="/popular-movies"
             className='w-32 h-14 flex items-center justify-center justify-self-center text-white bg-subMain text-xl rounded-full font-bold hover:text-main transitions mt-8'

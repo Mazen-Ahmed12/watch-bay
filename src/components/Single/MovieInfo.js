@@ -1,13 +1,11 @@
-import React from "react";
 import {
+  FaCalendarAlt,
+  FaClock,
   FaPlay,
   FaShareAlt,
   FaStar,
-  FaClock,
-  FaCalendarAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FiLogIn } from "react-icons/fi";
 
 function MovieInfo({ movie, setModalOpen }) {
   if (!movie) return null;

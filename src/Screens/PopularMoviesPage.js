@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
 import { tmdbAPI } from '../api/tmdb';
-import Movie from '../components/Movie';
 import Loader from '../components/Loader';
+import Movie from '../components/Movie';
 import Titles from '../components/Titles';
 import Layout from '../Layout/Layout';
 
