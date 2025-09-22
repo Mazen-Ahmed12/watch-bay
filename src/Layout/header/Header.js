@@ -1,12 +1,27 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { IoSearch } from "react-icons/io5";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { IoSearch } from 'react-icons/io5';
+import { useState } from 'react';
 import { MdFavorite } from "react-icons/md";
 import { CiLogin } from "react-icons/ci";
 
-function NavBar() {
+function Header() {
   const hover = 'hover:text-subMain transitions text-white';
-  const Hover = ({ isActive }) => (isActive ? 'text-subMain' : hover);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const Hover = ({ isActive }) =>
+    isActive
+      ? 'hover:text-main text-subMain transitions'
+      : 'hover:text-subMain transitions text-white';
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = searchQuery.trim();
+    if (query) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+      setSearchQuery('');
+    }
+  };
 
   return (
     <>
@@ -23,17 +38,20 @@ function NavBar() {
           </div>
           {/*search bar*/}
           <div className="col-span-3">
-            <form className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
+            <form onSubmit={handleSearch} className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
               <input
                 type="text"
-                placeholder="search from here"
-                className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for movies..."
+                className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-subMain w-12 h-12 flex-colo rounded text-white"
+                aria-label="Search"
+                className="bg-subMain w-12 h-12 flex-colo rounded text-white hover:bg-main transitions focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-subMain"
               >
-                <IoSearch />
+                <IoSearch className="w-5 h-5" />
               </button>
             </form>
           </div>
@@ -64,4 +82,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Header;

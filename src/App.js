@@ -19,6 +19,7 @@ import PopularMoviesPage from "./Screens/PopularMoviesPage";
 import Register from "./Screens/Register";
 import SingleMovie from "./Screens/SingleMovie";
 import WatchPage from "./Screens/WatchPage";
+import SearchResults from "./Screens/SearchResults";
 import ScrollOnTop from "./ScrollOnTop";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/AddMovie" element={<AddMovie />} />
           <Route path="/popular-movies" element={<PopularMoviesPage />} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollOnTop>

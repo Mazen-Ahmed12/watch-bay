@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./Navbar/NavBar";
+import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import MobileFooter from "./footer/MobileFooter";
 
@@ -7,7 +7,7 @@ function Layout({ children }) {
   return (
     <>
       <div className="bg-main text-white">
-        <NavBar />
+        <Header />
         {children}
         <Footer />
         {/* mobile footer*/} 
