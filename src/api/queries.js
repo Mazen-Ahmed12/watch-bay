@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { tmdbAPI } from './tmdb';
 
 // Movies
@@ -93,6 +93,21 @@ export const useGenres = () => {
 };
 
 // Discover movies with filters
+export const useInfinitePopularMovies = () => {
+  return useInfiniteQuery({
+    queryKey: ['infinitePopularMovies'],
+    queryFn: async ({ pageParam = 1 }) => {
+      const response = await tmdbAPI.getPopularMovies(pageParam);
+      return response;
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length + 1;
+      return nextPage <= (lastPage?.total_pages || 1) ? nextPage : undefined;
+    },
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+};
+
 export const useDiscoverMovies = (filters, page = 1) => {
   return useQuery({
     queryKey: ['discoverMovies', filters, page],
