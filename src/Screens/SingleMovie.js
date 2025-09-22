@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import { tmdbAPI } from "../api/tmdb";
+import { useMovieDetails, useMovieReviews } from "../api/queries";
 import ShareMovieModal from "../components/modals/ShareModal";
 import MovieCasts from "../components/Single/MovieCasts";
 import MovieInfo from "../components/Single/MovieInfo";
@@ -10,40 +10,22 @@ import Layout from "../Layout/Layout";
 
 function SingleMovie() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [movie, setMovie] = useState(null);
-  const [reviews, setReviews] = useState({ results: [] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMovieData = async () => {
-      try {
-        setLoading(true);
-        // Fetch movie details and reviews in parallel
-        const [movieData, reviewsData] = await Promise.all([
-          tmdbAPI.getMovieDetails(id),
-          tmdbAPI.getMovieReviews(id)
-        ]);
-        setMovie(movieData);
-        setReviews(reviewsData);
-      } catch (err) {
-        console.error('Error fetching movie data:', err);
-        setError('Failed to load movie data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Use the new query hooks
+  const { data: movie, isLoading: isMovieLoading, isError: isMovieError } = useMovieDetails(id);
+  const { data: reviews = { results: [] }, isLoading: isReviewsLoading, isError: isReviewsError } = useMovieReviews(id);
 
-    if (id) {
-      fetchMovieData();
-    } else {
-      navigate('/');
-    }
-  }, [id, navigate]);
+  const isLoading = isMovieLoading || isReviewsLoading;
+  const error = isMovieError || isReviewsError ? 'Failed to load movie data. Please try again later.' : null;
 
-  if (loading) {
+  if (!id) {
+    navigate('/');
+    return null;
+  }
+
+  if (isLoading) {
     return (
       <Layout>
         <div className="container mx-auto flex items-center justify-center min-h-[60vh]">

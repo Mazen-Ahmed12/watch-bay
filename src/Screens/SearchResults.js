@@ -1,38 +1,17 @@
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { tmdbAPI } from '../api/tmdb';
+import { useSearchMovies } from '../api/queries';
 import Movie from '../components/Movie';
 import Layout from '../Layout/Layout';
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
+  const { data, isLoading, isError } = useSearchMovies(query, 1);
+  const results = data?.results || [];
+  const error = isError ? 'Failed to fetch search results' : null;
 
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      try {
-        setLoading(true);
-        const data = await tmdbAPI.searchMovies(query);
-        setResults(data.results || []);
-        setError(null);
-      } catch (err) {
-        console.error('Error searching movies:', err);
-        setError('Failed to fetch search results');
-        setResults([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (query) {
-      fetchSearchResults();
-    }
-  }, [query]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Searching for "{query}"...</div>

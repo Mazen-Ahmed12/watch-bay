@@ -1,11 +1,10 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { IoSearch } from 'react-icons/io5';
 import { useState } from 'react';
-import { MdFavorite } from "react-icons/md";
 import { CiLogin } from "react-icons/ci";
+import { IoSearch } from 'react-icons/io5';
+import { MdFavorite } from "react-icons/md";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 function Header() {
-  const hover = 'hover:text-subMain transitions text-white';
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 

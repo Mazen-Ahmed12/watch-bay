@@ -1,38 +1,22 @@
 import Rating from "@mui/material/Rating";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsBookmarkStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { tmdbAPI } from "../../api/tmdb";
+import { useTopRatedMovies } from "../../api/queries";
 import Titles from "../Titles";
 
 function TopRated() {
+  const { data, isLoading, isError } = useTopRatedMovies(1);
+  const topRatedMovies = data?.results || [];
+  const error = isError ? "Failed to load top rated movies." : null;
   const [nextEl, setNextEl] = useState(null);
   const [prevEl, setPrevEl] = useState(null);
-  const [topRatedMovies, setTopRatedMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
+
   const className = "hover:bg-dry transitions text-sm rouned w-8 h-8 flex-colo bg-subMain text-white";
 
-  useEffect(() => {
-    const fetchTopRatedMovies = async () => {
-      try {
-        setLoading(true);
-        const data = await tmdbAPI.getTopRatedMovies();
-        setTopRatedMovies(data.results);
-      } catch (err) {
-        console.error("Error fetching top rated movies:", err);
-        setError("Failed to load top rated movies. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopRatedMovies();
-  }, []);
   return (
     <div className="my-16">
       <Titles title="Top Rated" Icon={BsBookmarkStarFill} />
@@ -62,7 +46,7 @@ function TopRated() {
             },
           }}
         >
-          {loading ? (
+          {isLoading ? (
             <div className="col-span-4 flex items-center justify-center">
               <p>Loading top rated movies...</p>
             </div>

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { FaUserFriends } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Titles from "../Titles";
@@ -83,7 +82,6 @@ function MovieCasts({ casts }) {
           {visibleCasts.length > 0 ? (
             visibleCasts.map((cast) => (
               <SwiperSlide key={cast.id} className="h-auto">
-                <Link to={`/person/${cast.id}`} className="w-full h-full block">
                   <div className="w-full h-full p-3 italic text-xs text-text rounded flex flex-col bg-dry border border-gray-800 hover:bg-greyed transition-colors">
                     <CastImage 
                       src={cast.profile_path 
@@ -95,7 +93,6 @@ function MovieCasts({ casts }) {
                     <p className="font-bold text-base mt-2">{cast.name}</p>
                     <p className="text-subMain text-sm mt-1">{cast.character}</p>
                   </div>
-                </Link>
               </SwiperSlide>
             ))
           ) : (

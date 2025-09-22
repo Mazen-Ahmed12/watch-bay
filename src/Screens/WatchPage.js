@@ -1,54 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import Layout from "../Layout/Layout";
+import { useMemo } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import { FaCloudDownloadAlt, FaHeart, FaYoutube } from "react-icons/fa";
-import { tmdbAPI } from "../api/tmdb";
+import { FaCloudDownloadAlt, FaHeart } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMovieDetails, useMovieVideos } from "../api/queries";
+import Layout from "../Layout/Layout";
 
 function WatchPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState(null);
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // Fetch movie details and videos
-  useEffect(() => {
-    const fetchMovieData = async () => {
-      if (!id) {
-        setError('No movie ID provided');
-        setLoading(false);
-        return;
-      }
+  // Use the new query hooks
+  const { data: movie, isLoading: isMovieLoading, isError: isMovieError } = useMovieDetails(id);
+  const { data: videosData, isLoading: isVideosLoading, isError: isVideosError } = useMovieVideos(id);
 
-      try {
-        setLoading(true);
-        
-        // Fetch movie details
-        const movieData = await tmdbAPI.getMovieDetails(id);
-        setMovie(movieData);
-        
-        // Fetch movie videos
-        const videosData = await tmdbAPI.getMovieVideos(id);
-        
-        if (videosData?.results) {
-          const youtubeVideos = videosData.results.filter(
-            (video) => video.site === 'YouTube' && (video.type === 'Trailer' || video.type === 'Teaser')
-          );
-          setVideos(youtubeVideos);
-        }
-        
-      } catch (err) {
-        console.error('Error fetching movie data:', err);
-        setError('Failed to load movie data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Filter YouTube videos
+  const youtubeVideos = useMemo(() => {
+    if (!videosData?.results) return [];
+    return videosData.results.filter(
+      (video) => video.site === 'YouTube' && (video.type === 'Trailer' || video.type === 'Teaser')
+    );
+  }, [videosData]);
 
-    fetchMovieData();
-  }, [id]);
+  const isLoading = isMovieLoading || isVideosLoading;
+  const error = isMovieError || isVideosError 
+    ? 'Failed to load movie data. Please try again later.' 
+    : null;
+
+  if (!id) {
+    navigate('/');
+    return null;
+  }
+
   return (
     <Layout>
       <div className="container mx-auto bg-dry p-6 mb-12">
@@ -70,7 +52,7 @@ function WatchPage() {
         </div>
 
         {/* watch video */}
-        {loading ? (
+        {isLoading ? (
           <div className="w-full h-96 flex-colo">
             <div className="spinner">Loading...</div>
           </div>
@@ -78,16 +60,15 @@ function WatchPage() {
           <div className="w-full h-96 flex-colo text-red-500">
             {error}
           </div>
-        ) : videos.length > 0 ? (
+        ) : youtubeVideos.length > 0 ? (
           <div className="w-full h-full rounded-lg overflow-hidden">
             <div className="relative pt-[56.25%] h-0 overflow-hidden">
               <iframe
-                src={`https://www.youtube.com/embed/${videos[0].key}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${youtubeVideos[0].key}?autoplay=1`}
                 className="absolute top-0 left-0 w-full h-full"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title={videos[0].name}
+                title={youtubeVideos[0]?.name || 'Movie Trailer'}
               />
             </div>
           </div>

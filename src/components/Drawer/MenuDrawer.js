@@ -1,10 +1,8 @@
-import React from "react";
-import MainDrawer from "./MainDrawer";
-import { IoClose } from "react-icons/io5";
+import { Facebook, Info, Instagram, MovieCreation, Phone, WhatsApp } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { MovieCreation, Info, Phone } from "@mui/icons-material";
+import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
-import { Facebook, Instagram, WhatsApp } from "@mui/icons-material";
+import MainDrawer from "./MainDrawer";
 import ShareBar from "./ShareBar";
 
 
@@ -66,10 +64,25 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
             </NavLink>
           ))}
           <div className="flex-rows gap-6 w-full p6">
-          <ShareBar link="https://www.facebook.com/" value={"Facebook"} icon={<Facebook />} style={"!bg-blue-600 hover:!bg-blue-700 !text-white p-3 rounded-full"} />
-          <ShareBar link="https://web.whatsapp.com/" value={"whatsapp"} icon={<WhatsApp />} style={"!bg-green-500 !hover:bg-green-600 !text-white p-3 rounded-full"}/>
-          <ShareBar link="https://web.whatsapp.com/" value={"whatsapp"} icon={<Instagram />} style={"!bg-pink-500 hover:!bg-pink-600 !text-white p-3 rounded-full"}/>
-        </div>
+            <ShareBar 
+              link="https://www.facebook.com/" 
+              value="Facebook" 
+              icon={<Facebook />} 
+              className="!bg-blue-600 hover:!bg-blue-700 !text-white p-3 rounded-full" 
+            />
+            <ShareBar 
+              link="https://web.whatsapp.com/" 
+              value="whatsapp" 
+              icon={<WhatsApp />} 
+              className="!bg-green-500 hover:!bg-green-600 !text-white p-3 rounded-full"
+            />
+            <ShareBar 
+              link="https://www.instagram.com/" 
+              value="Instagram" 
+              icon={<Instagram />} 
+              className="!bg-pink-500 hover:!bg-pink-600 !text-white p-3 rounded-full"
+            />
+          </div>
         </div>
       </div>
     </MainDrawer>

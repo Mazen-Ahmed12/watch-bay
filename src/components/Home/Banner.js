@@ -1,34 +1,15 @@
-import { useEffect, useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { tmdbAPI } from '../../api/tmdb';
-
+import { useTrendingMovies } from '../../api/queries';
 
 function Banner() {
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, isLoading, isError } = useTrendingMovies('day');
+  const trendingMovies = data?.results?.slice(0, 8) || [];
+  const error = isError ? 'Failed to load movies. Please try again later.' : null;
 
-  useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      try {
-        setLoading(true);
-        const data = await tmdbAPI.getTrending('day');
-        setTrendingMovies(data.results.slice(0, 8));
-      } catch (err) {
-        console.error('Error fetching trending movies:', err);
-        setError('Failed to load movies. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTrendingMovies();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="w-full h-96 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>

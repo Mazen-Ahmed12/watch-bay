@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Aos from "aos";
 import { Route, Routes } from "react-router-dom";
 import DrawerContext from "./Context/DrawerContext";
@@ -17,39 +18,44 @@ import MoviesPage from "./Screens/Movies";
 import NotFound from "./Screens/NotFound";
 import PopularMoviesPage from "./Screens/PopularMoviesPage";
 import Register from "./Screens/Register";
+import SearchResults from "./Screens/SearchResults";
 import SingleMovie from "./Screens/SingleMovie";
 import WatchPage from "./Screens/WatchPage";
-import SearchResults from "./Screens/SearchResults";
 import ScrollOnTop from "./ScrollOnTop";
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
   Aos.init();
   return (
-    <DrawerContext>
-      <ScrollOnTop>
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movie/:id" element={<SingleMovie />} />
-          <Route path="/watch/:id" element={<WatchPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/password" element={<Password />} />
-          <Route path="/favorites" element={<FavoritesMovies />} />
-          <Route path="/movieslist" element={<MoviesList />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/AddMovie" element={<AddMovie />} />
-          <Route path="/popular-movies" element={<PopularMoviesPage />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ScrollOnTop>
-    </DrawerContext>
+    <QueryClientProvider client={queryClient}>
+      <DrawerContext>
+        <ScrollOnTop>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movie/:id" element={<SingleMovie />} />
+            <Route path="/watch/:id" element={<WatchPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/password" element={<Password />} />
+            <Route path="/favorites" element={<FavoritesMovies />} />
+            <Route path="/movieslist" element={<MoviesList />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/AddMovie" element={<AddMovie />} />
+            <Route path="/popular-movies" element={<PopularMoviesPage />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ScrollOnTop>
+      </DrawerContext>
+    </QueryClientProvider>
   );
 }
 
