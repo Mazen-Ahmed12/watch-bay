@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://Mazen-Ahmed12.github.io/watch-bay",
   "scripts": {
-    "predeploy": "yarn build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
