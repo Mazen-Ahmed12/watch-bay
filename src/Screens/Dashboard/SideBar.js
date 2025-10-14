@@ -1,6 +1,6 @@
 import React from "react";
 import { BsFillGridFill } from "react-icons/bs";
-import { FaListAlt, FaUsers, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { RiMovie2Fill, RiLockPasswordLine } from "react-icons/ri";
 import { HiViewGridAdd } from "react-icons/hi";
 import { FiSettings } from "react-icons/fi";
@@ -15,34 +15,19 @@ function SideBar({ children }) {
       icon: BsFillGridFill,
     },
     {
-      name: "Movies List",
-      link: "/movieslist",
-      icon: FaListAlt,
-    },
-    {
       name: "Add Movie",
       link: "/addmovie",
       icon: RiMovie2Fill,
     },
     {
-      name: "Categories",
-      link: "/categories",
-      icon: HiViewGridAdd,
-    },
-    {
-      name: "Users",
-      link: "/users",
-      icon: FaUsers,
+      name: "Favorites Movies",
+      link: "/favorites",
+      icon: FaHeart,
     },
     {
       name: "Update Profile",
       link: "/profile",
       icon: FiSettings,
-    },
-    {
-      name: "Favorites Movies",
-      link: "/favorites",
-      icon: FaHeart,
     },
     {
       name: "Change Password",
@@ -59,9 +44,9 @@ function SideBar({ children }) {
 
   return (
     <Layout>
-      <div className="min-h-screen container mx-auto px-2">
-        <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6">
-          <div className="col-span-2 sticky bg-dry border border-gray-800 p-6 rounded-md xl:mb-0 mb-5">
+      <div className="container px-2 mx-auto min-h-screen">
+        <div className="grid-cols-8 gap-10 items-start py-6 xl:grid md:py-12">
+          <div className="sticky col-span-2 p-6 mb-5 rounded-md border border-gray-800 bg-dry xl:mb-0">
             {
               // SideBar Links
               SideLinks.map((link, index) => (
@@ -76,7 +61,7 @@ function SideBar({ children }) {
             data-aos-duration="1000"
             data-aos-delay="10"
             data-aos-offset="200"
-            className="col-span-6 rounded-md bg-dry border border-gray-800 p-6"
+            className="col-span-6 p-6 rounded-md border border-gray-800 bg-dry"
           >
             {children}
           </div>

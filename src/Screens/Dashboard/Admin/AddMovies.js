@@ -30,7 +30,7 @@ function AddMovie() {
       />
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-bold">Create Movie</h2>
-        <div className="w-full  grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 w-full md:grid-cols-2">
           <TextFields
             title="Movie Title"
             placeholder="Game of Thrones"
@@ -39,7 +39,7 @@ function AddMovie() {
           <TextFields title="Hours" placeholder="2hr" type="text" />
         </div>
 
-        <div className="w-full  grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 w-full md:grid-cols-2">
           <TextFields title="Language Used" placeholder="English" type="text" />
           <TextFields
             title="Year of Release"
@@ -49,7 +49,7 @@ function AddMovie() {
         </div>
 
         {/* IMAGES */}
-        <div className="w-full grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 w-full md:grid-cols-2">
           {/* img without title */}
           <div className="flex flex-col gap-2">
             <Typography
@@ -59,11 +59,11 @@ function AddMovie() {
               Image without Title
             </Typography>
             <Uploader />
-            <div className="w-32 h-32 p-2 bg-main border border-border rounded">
+            <div className="p-2 w-32 h-32 rounded border bg-main border-border">
               <img
                 src={`${process.env.PUBLIC_URL}/images/14.jpg`}
                 alt=""
-                className="w-full h-full object-cover rounded"
+                className="object-cover w-full h-full rounded"
               />
             </div>
           </div>
@@ -76,11 +76,11 @@ function AddMovie() {
               Image with Title
             </Typography>
             <Uploader />
-            <div className="w-32 h-32 p-2 bg-main border border-border rounded">
+            <div className="p-2 w-32 h-32 rounded border bg-main border-border">
               <img
                 src={`${process.env.PUBLIC_URL}/images/13.jpg`}
                 alt=""
-                className="w-full h-full object-cover rounded"
+                className="object-cover w-full h-full rounded"
               />
             </div>
           </div>
@@ -91,39 +91,39 @@ function AddMovie() {
           placeholder="Make it short and sweet"
         />
         {/* CATEGORY */}
-        <div className="text-sm w-full">
+        <div className="w-full text-sm">
           <Select label="Movie Category" options={CategoriesData} />
         </div>
         {/* MOVIE VIDEO */}
 
-        <div className="flex flex-col gap-2 w-full ">
-          <label className="text-border font-semibold text-sm">
+        <div className="flex flex-col gap-2 w-full">
+          <label className="text-sm font-semibold text-border">
             Movie Video
           </label>
           <Uploader />
         </div>
         {/* CASTS */}
-        <div className="w-full grid lg:grid-cols-2 gap-6 items-start ">
+        <div className="grid gap-6 items-start w-full lg:grid-cols-2">
           <button
             onClick={() => setModalOpen(true)}
-            className="w-full py-4 bg-main border border-subMain border-dashed text-white rounded"
+            className="py-4 w-full text-white rounded border border-dashed bg-main border-subMain"
           >
             Add Cast
           </button>
-          <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4">
             {UsersData.map((user, i) => (
               <div
                 key={i}
-                className="p-2 italic text-xs text-text rounded flex-colo bg-main border border-border"
+                className="p-2 text-xs italic rounded border text-text flex-colo bg-main border-border"
               >
                 <img
                   src={`${process.env.PUBLIC_URL}/images/${user.image ? user.image : "user.png"}`}
                   alt={user.fullName}
-                  className="w-full h-24 object-cover rounded mb-2"
+                  className="object-cover mb-2 w-full h-24 rounded"
                 />
                 <p>{user.fullName}</p>
-                <div className="flex-rows mt-2 w-full gap-2">
-                  <button className="w-6 h-6 flex-colo bg-dry border border-border text-subMain rounded">
+                <div className="gap-2 mt-2 w-full flex-rows">
+                  <button className="w-6 h-6 rounded border flex-colo bg-dry border-border text-subMain">
                     <MdDelete />
                   </button>
                   <button
@@ -131,7 +131,7 @@ function AddMovie() {
                       setCast(user);
                       setModalOpen(true);
                     }}
-                    className="w-6 h-6 flex-colo bg-dry border border-border text-green-600 rounded"
+                    className="w-6 h-6 text-green-600 rounded border flex-colo bg-dry border-border"
                   >
                     <FaEdit />
                   </button>
@@ -141,7 +141,7 @@ function AddMovie() {
           </div>
         </div>
         {/* SUBMIT */}
-        <button className="bg-subMain w-full flex-rows gap-6 font-medium text-white py-4 rounded">
+        <button className="gap-6 py-4 w-full font-medium text-white rounded bg-subMain flex-rows">
           <ImUpload /> Publish Movie
         </button>
       </div>

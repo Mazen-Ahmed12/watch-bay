@@ -1,8 +1,13 @@
 import Rating from "@mui/material/Rating";
 import { useState } from "react";
-import { BsBookmarkStarFill, BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import {
+  BsBookmarkStarFill,
+  BsChevronLeft,
+  BsChevronRight,
+} from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import FavoritesMovies from "Screens/Dashboard/FavoritesMovies";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useTopRatedMovies } from "../../api/queries";
@@ -14,8 +19,10 @@ function TopRated() {
   const error = isError ? "Failed to load top rated movies." : null;
   const [nextEl, setNextEl] = useState(null);
   const [prevEl, setPrevEl] = useState(null);
+  const navigate = useNavigate();
 
-  const className = "hover:bg-dry transitions text-sm rouned w-8 h-8 flex-colo bg-subMain text-white";
+  const className =
+    "w-8 h-8 text-sm text-white hover:bg-dry transitions rouned flex-colo bg-subMain";
 
   return (
     <div className="my-16">
@@ -47,7 +54,7 @@ function TopRated() {
           }}
         >
           {isLoading ? (
-            <div className="col-span-4 flex items-center justify-center">
+            <div className="flex col-span-4 justify-center items-center">
               <p>Loading top rated movies...</p>
             </div>
           ) : error ? (
@@ -57,18 +64,27 @@ function TopRated() {
           ) : (
             topRatedMovies.map((movie) => (
               <SwiperSlide key={movie.id}>
-                <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden flex-colo">
+                <div className="overflow-hidden p-4 rounded-lg border h-rate hovered border-border bg-dry flex-colo">
                   <img
-                    src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : ''}
+                    src={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : ""
+                    }
                     alt={movie.title}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="object-cover w-full h-full rounded-lg"
                   />
-                  <div className="px-4 hoveres gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center">
-                    <button className="w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white">
+                  <div className="flex absolute top-0 right-0 bottom-0 left-0 flex-col gap-6 justify-center items-center px-4 text-center bg-black bg-opacity-70 hoveres">
+                    <button
+                      onClick={() =>
+                        navigate("/favorites", { state: { movieId: movie.id } })
+                      }
+                      className="w-12 h-12 text-white bg-white bg-opacity-30 rounded-full flex-colo transitions hover:bg-subMain"
+                    >
                       <FaHeart />
                     </button>
                     <Link
-                      className="font-semibold text-xl trancuted line-clamp-2 text-white"
+                      className="text-xl font-semibold text-white trancuted line-clamp-2"
                       to={`/movie/${movie.id}`}
                     >
                       {movie.title}
@@ -81,7 +97,9 @@ function TopRated() {
                         readOnly
                         size="small"
                       />
-                      <span className="text-white">({movie.vote_average.toFixed(1)})</span>
+                      <span className="text-white">
+                        ({movie.vote_average.toFixed(1)})
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -89,7 +107,7 @@ function TopRated() {
             ))
           )}
         </Swiper>
-        <div className="w-full px-1 flex-rows gap-6 pt-12">
+        <div className="gap-6 px-1 pt-12 w-full flex-rows">
           <button className={className} ref={(node) => setPrevEl(node)}>
             <BsChevronLeft />
           </button>

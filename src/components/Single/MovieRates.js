@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BsBookmarkStarFill, BsPersonCircle } from "react-icons/bs";
 import Titles from "../Titles";
 
-function MovieRates({ movie, reviews }) {
+function MovieRates({ reviews }) {
   const reviewCount = reviews?.results?.length || 0;
 
   // Format date to relative time (e.g., "2 days ago")
@@ -23,54 +23,28 @@ function MovieRates({ movie, reviews }) {
         0
       ) / reviews.results.length
     : 0;
-  const Ratings = [
-    {
-      title: "0 - Poor",
-      value: 0,
-    },
-    {
-      title: "1 - Fair",
-      value: 1,
-    },
-    {
-      title: "2 - Good",
-      value: 2,
-    },
-    {
-      title: "3 - Very Good",
-      value: 3,
-    },
-    {
-      title: "4 - Excellent",
-      value: 4,
-    },
-    {
-      title: "5 - Masterpiece",
-      value: 5,
-    },
-  ];
 
   const [rating, setRating] = useState(0);
 
   return (
     <div className="my-12">
       <Titles title="Movie Reviews" Icon={BsBookmarkStarFill} className="mb-2" />
-      <p className="text-gray-400 text-sm mb-8 text-center">
+      <p className="mb-8 text-sm text-center text-gray-400">
         Share your thoughts and read what others have to say
       </p>
       
-      <div className="bg-dry rounded-xl shadow-lg overflow-hidden">
+      <div className="overflow-hidden rounded-xl shadow-lg bg-dry">
         <div className="md:flex">
           {/* Write Review Section */}
-          <div className="md:w-1/3 p-8 bg-gradient-to-br from-subMain/5 to-main/50">
+          <div className="p-8 bg-gradient-to-br md:w-1/3 from-subMain/5 to-main/50">
             <div className="sticky top-8">
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="mb-6 text-2xl font-bold text-white">
                 Write a Review
               </h3>
               
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-300">
                     Your Rating
                   </label>
                   <div className="flex items-center space-x-2">
@@ -82,20 +56,20 @@ function MovieRates({ movie, reviews }) {
                       size="large"
                       className="text-3xl"
                     />
-                    <span className="text-sm text-gray-400 ml-2">
+                    <span className="ml-2 text-sm text-gray-400">
                       {rating > 0 ? `${rating}/5` : 'Rate this'}
                     </span>
                   </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-300">
                     Your Review
                   </label>
                   <textarea
                     placeholder="Share your thoughts about this movie..."
                     rows="4"
-                    className="w-full px-4 py-3 bg-main border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-subMain focus:border-transparent transition-all"
+                    className="px-4 py-3 w-full placeholder-gray-500 text-white rounded-lg border border-gray-700 transition-all bg-main focus:ring-2 focus:ring-subMain focus:border-transparent"
                   />
                 </div>
                 
@@ -107,8 +81,8 @@ function MovieRates({ movie, reviews }) {
           </div>
           
           {/* Reviews List */}
-          <div className="md:w-2/3 p-8">
-            <div className="flex items-center justify-between mb-8">
+          <div className="p-8 md:w-2/3">
+            <div className="flex justify-between items-center mb-8">
               <div>
                 <h3 className="text-2xl font-bold text-white">
                   {reviewCount} {reviewCount === 1 ? 'Review' : 'Reviews'}
@@ -131,7 +105,7 @@ function MovieRates({ movie, reviews }) {
               
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-gray-400">Sort by:</span>
-                <select className="bg-main border border-gray-700 text-white text-sm rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-subMain focus:border-transparent">
+                <select className="px-3 py-1.5 text-sm text-white rounded-lg border border-gray-700 bg-main focus:ring-2 focus:ring-subMain focus:border-transparent">
                   <option>Most Recent</option>
                   <option>Highest Rated</option>
                   <option>Lowest Rated</option>
@@ -144,15 +118,15 @@ function MovieRates({ movie, reviews }) {
                 reviews.results.map((review) => (
                   <div 
                     key={review.id}
-                    className="bg-main/50 rounded-xl p-6 border border-gray-800 hover:border-subMain/30 transition-all"
+                    className="p-6 rounded-xl border border-gray-800 transition-all bg-main/50 hover:border-subMain/30"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-subMain/10 flex items-center justify-center">
+                      <div className="flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-full bg-subMain/10">
                         <BsPersonCircle className="text-2xl text-subMain" />
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between">
+                        <div className="flex justify-between items-center">
                           <h4 className="text-lg font-semibold text-white">
                             {review.author}
                           </h4>
@@ -172,11 +146,11 @@ function MovieRates({ movie, reviews }) {
                           )}
                         </div>
                         
-                        <p className="text-sm text-gray-400 mt-1">
+                        <p className="mt-1 text-sm text-gray-400">
                           {formatDate(review.created_at)}
                         </p>
                         
-                        <p className="mt-3 text-gray-300 leading-relaxed">
+                        <p className="mt-3 leading-relaxed text-gray-300">
                           {review.content}
                         </p>
                       </div>
@@ -184,10 +158,10 @@ function MovieRates({ movie, reviews }) {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-16 bg-main/30 rounded-xl">
-                  <BsBookmarkStarFill className="mx-auto text-4xl text-gray-600 mb-4" />
+                <div className="py-16 text-center rounded-xl bg-main/30">
+                  <BsBookmarkStarFill className="mx-auto mb-4 text-4xl text-gray-600" />
                   <h4 className="text-xl font-semibold text-gray-300">No Reviews Yet</h4>
-                  <p className="text-gray-500 mt-2 max-w-md mx-auto">
+                  <p className="mx-auto mt-2 max-w-md text-gray-500">
                     Be the first to share your thoughts about this movie. Your review could help others decide what to watch!
                   </p>
                 </div>
@@ -197,7 +171,7 @@ function MovieRates({ movie, reviews }) {
         </div>
       </div>
       
-      <style jsx>{`
+      <style jsx="true">{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }
