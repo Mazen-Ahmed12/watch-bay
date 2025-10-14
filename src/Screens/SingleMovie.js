@@ -30,7 +30,7 @@ function SingleMovie() {
       <Layout>
         <div className="container mx-auto flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center">
-            <FaSpinner className="animate-spin text-4xl text-subMain mb-4" />
+            <FaSpinner className="mb-4 text-4xl animate-spin text-subMain" />
             <p className="text-lg">Loading movie details...</p>
           </div>
         </div>
@@ -41,12 +41,12 @@ function SingleMovie() {
   if (error || !movie) {
     return (
       <Layout>
-        <div className="container mx-auto text-center py-20">
-          <h2 className="text-2xl font-bold text-red-500 mb-4">Error loading movie</h2>
+        <div className="container py-20 mx-auto text-center">
+          <h2 className="mb-4 text-2xl font-bold text-red-500">Error loading movie</h2>
           <p className="mb-6">{error || 'Movie not found'}</p>
           <button 
             onClick={() => navigate(-1)}
-            className="bg-subMain text-white px-6 py-2 rounded hover:bg-transparent border border-subMain transition-all"
+            className="px-6 py-2 text-white rounded border transition-all bg-subMain hover:bg-transparent border-subMain"
           >
             Go Back
           </button>
@@ -76,7 +76,7 @@ function SingleMovie() {
         }} 
         setModalOpen={setModalOpen} 
       />
-      <div className="container mx-auto min-h-screen px-2 my-6">
+      <div className="container px-2 mx-auto my-6 min-h-screen">
         <MovieCasts casts={movie.credits?.cast || []} />
         <MovieRates movie={movie} reviews={reviews} />
       </div>

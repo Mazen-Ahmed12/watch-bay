@@ -24,38 +24,38 @@ function Header() {
 
   return (
     <>
-      <div className="bg-main shadow-md sticky top-0 z-20">
-        <div className="container mx-auto py-6 px-2 lg:grid gap-10 grid-cols-7 justify-between items-center">
-          <div className="col-span-1 lg:block hidden">
+      <div className="sticky top-0 z-20 shadow-md bg-main">
+        <div className="container grid-cols-7 gap-10 justify-between items-center px-2 py-6 mx-auto lg:grid">
+          <div className="hidden col-span-1 lg:block">
             <Link to="/">
               <img
                 src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
                 alt="logo"
-                className="w-full h-16 object-cover"
+                className="object-cover w-full h-16"
               />
             </Link>
           </div>
           {/*search bar*/}
           <div className="col-span-3">
-            <form onSubmit={handleSearch} className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
+            <form onSubmit={handleSearch} className="gap-4 w-full text-sm rounded bg-dryGray flex-btn">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for movies..."
-                className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black focus:outline-none"
+                className="px-2 w-11/12 h-12 text-sm font-medium text-black bg-transparent border-none placeholder:text-border focus:outline-none"
               />
               <button
                 type="submit"
                 aria-label="Search"
-                className="bg-subMain w-12 h-12 flex-colo rounded text-white hover:bg-main transitions focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-subMain"
+                className="w-12 h-12 text-white rounded bg-subMain flex-colo hover:bg-main transitions focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-subMain"
               >
                 <IoSearch className="w-5 h-5" />
               </button>
             </form>
           </div>
           {/*menus*/}
-          <div className="col-span-3 font-medium text-sm hidden xl:gap-12 2xl:gap-16 justify-between lg:flex xl:justify-end items-center">
+          <div className="hidden col-span-3 justify-between items-center text-sm font-medium xl:gap-12 2xl:gap-16 lg:flex xl:justify-end">
             <NavLink to="/Movies" className={Hover}>
               Movies
             </NavLink>
@@ -65,11 +65,8 @@ function Header() {
             <NavLink to="/contact-us" className={Hover}>
               Contact Us
             </NavLink>
-            <NavLink to="/favorites " className={`${Hover} relative`}>
-              <MdFavorite className="w-8 h-8 hover:text-subMain" />
-              <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
-                2
-              </div>
+            <NavLink to="/favorites" className={Hover}>
+              <MdFavorite className={`w-8 h-8`} />
             </NavLink>
             <NavLink to="/login" className={Hover}>
               <CiLogin className="w-8 h-8" />

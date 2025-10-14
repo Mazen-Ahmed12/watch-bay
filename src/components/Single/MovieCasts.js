@@ -10,10 +10,10 @@ const CastImage = React.memo(({ src, alt }) => {
   const imgRef = useRef();
   
   // Use lower quality image for faster loading
-  const imageUrl = src || '';
+  const imageUrl = src || null;
 
   return (
-    <div className="relative w-full h-64 overflow-hidden rounded">
+    <div className="overflow-hidden relative w-full h-64 rounded">
       {!loaded && (
         <div className="absolute inset-0 bg-gray-800 animate-pulse" />
       )}
@@ -30,7 +30,7 @@ const CastImage = React.memo(({ src, alt }) => {
         }}
       />
       {!imageUrl && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+        <div className="flex absolute inset-0 justify-center items-center bg-gray-800">
           <FaUserFriends className="text-4xl text-gray-600" />
         </div>
       )}
@@ -48,11 +48,11 @@ function MovieCasts({ casts }) {
       <div className="mt-10">
         <Swiper
           autoplay={{
-            delay: 5000,
+            delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          loop={visibleCasts.length > 4}
+          loop={true}
           speed={400}
           modules={[Autoplay]}
           spaceBetween={15}
@@ -82,21 +82,21 @@ function MovieCasts({ casts }) {
           {visibleCasts.length > 0 ? (
             visibleCasts.map((cast) => (
               <SwiperSlide key={cast.id} className="h-auto">
-                  <div className="w-full h-full p-3 italic text-xs text-text rounded flex flex-col bg-dry border border-gray-800 hover:bg-greyed transition-colors">
-                    <CastImage 
-                      src={cast.profile_path 
-                        ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
-                        : ''
-                      }
-                      alt={cast.name}
-                    />
-                    <p className="font-bold text-base mt-2">{cast.name}</p>
-                    <p className="text-subMain text-sm mt-1">{cast.character}</p>
-                  </div>
+                <div className="flex flex-col p-3 w-full h-full text-xs italic rounded border border-gray-800 transition-colors text-text bg-dry hover:bg-greyed">
+                  <CastImage 
+                    src={cast.profile_path 
+                      ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
+                      : ''
+                    }
+                    alt={cast.name}
+                  />
+                  <p className="mt-2 text-base font-bold">{cast.name}</p>
+                  <p className="mt-1 text-sm text-subMain">{cast.character}</p>
+                </div>
               </SwiperSlide>
             ))
           ) : (
-            <div className="col-span-4 text-center py-10">
+            <div className="col-span-4 py-10 text-center">
               <p className="text-subMain">No cast information available</p>
             </div>
           )}

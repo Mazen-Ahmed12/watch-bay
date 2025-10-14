@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Aos from "aos";
 import { Route, Routes } from "react-router-dom";
 import DrawerContext from "./Context/DrawerContext";
@@ -7,8 +7,6 @@ import ContactUs from "./Screens/ContactUS";
 import AddMovie from "./Screens/Dashboard/Admin/AddMovies";
 import Categories from "./Screens/Dashboard/Admin/Categories";
 import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
-import MoviesList from "./Screens/Dashboard/Admin/MoviesList";
-import Users from "./Screens/Dashboard/Admin/Users";
 import FavoritesMovies from "./Screens/Dashboard/FavoritesMovies";
 import Password from "./Screens/Dashboard/Password";
 import Profile from "./Screens/Dashboard/Profile";
@@ -22,12 +20,14 @@ import SearchResults from "./Screens/SearchResults";
 import SingleMovie from "./Screens/SingleMovie";
 import WatchPage from "./Screens/WatchPage";
 import ScrollOnTop from "./ScrollOnTop";
-
+import { useEffect } from "react";
 // Create a client
 const queryClient = new QueryClient();
 
 function App() {
-  Aos.init();
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <DrawerContext>
@@ -44,10 +44,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/password" element={<Password />} />
             <Route path="/favorites" element={<FavoritesMovies />} />
-            <Route path="/movieslist" element={<MoviesList />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/users" element={<Users />} />
             <Route path="/AddMovie" element={<AddMovie />} />
             <Route path="/popular-movies" element={<PopularMoviesPage />} />
             <Route path="/search" element={<SearchResults />} />
