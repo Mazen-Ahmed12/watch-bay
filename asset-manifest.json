@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/watch-bay/static/css/main.f1aa2fd8.css",
-    "main.js": "/watch-bay/static/js/main.fabd767f.js",
+    "main.css": "/watch-bay/static/css/main.909f9f54.css",
+    "main.js": "/watch-bay/static/js/main.048b60c4.js",
     "index.html": "/watch-bay/index.html",
-    "main.f1aa2fd8.css.map": "/watch-bay/static/css/main.f1aa2fd8.css.map",
-    "main.fabd767f.js.map": "/watch-bay/static/js/main.fabd767f.js.map"
+    "main.909f9f54.css.map": "/watch-bay/static/css/main.909f9f54.css.map",
+    "main.048b60c4.js.map": "/watch-bay/static/js/main.048b60c4.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1aa2fd8.css",
-    "static/js/main.fabd767f.js"
+    "static/css/main.909f9f54.css",
+    "static/js/main.048b60c4.js"
   ]
 }
