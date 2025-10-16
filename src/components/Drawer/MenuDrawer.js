@@ -1,10 +1,16 @@
-import { Facebook, Info, Instagram, MovieCreation, Phone, WhatsApp } from "@mui/icons-material";
+import {
+  Facebook,
+  Info,
+  Instagram,
+  MovieCreation,
+  Phone,
+  WhatsApp,
+} from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import MainDrawer from "./MainDrawer";
 import ShareBar from "./ShareBar";
-
 
 function MenuDrawer({ drawerOpen, toggleDrawer }) {
   const active = "bg-dry text-subMain";
@@ -34,13 +40,13 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
 
   return (
     <MainDrawer drawerOpen={drawerOpen} closeDrawer={toggleDrawer}>
-      <div className="flex flex-col w-full h-full justify-between items-center bg-main text-white rounded">
-        <div className="w-full flex-btn h-16 px-6 py-4 bg-dry">
+      <div className="flex flex-col justify-between items-center w-full h-full text-white rounded bg-main">
+        <div className="px-6 py-4 w-full h-16 flex-btn bg-dry">
           <Link to="/" onClick={toggleDrawer}>
             <img
               src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
               alt="logo"
-              className="w-full h-12 object-contain"
+              className="object-contain w-full h-12"
             />
           </Link>
           <IconButton
@@ -51,7 +57,7 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
           </IconButton>
         </div>
         {/* menu links*/}
-        <div className="w-full overflow-y-scroll flex-grow max-hight-full">
+        <div className="overflow-y-scroll flex-grow w-full max-hight-full">
           {WebSitePages.map((link, index) => (
             <NavLink
               to={link.link}
@@ -63,24 +69,25 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
               {link.name}
             </NavLink>
           ))}
-          <div className="flex-rows gap-6 w-full p6">
-            <ShareBar 
-              link="https://www.facebook.com/" 
-              value="Facebook" 
-              icon={<Facebook />} 
-              className="!bg-blue-600 hover:!bg-blue-700 !text-white p-3 rounded-full" 
+          <div className="flex flex-row gap-6 justify-center p-6 w-full">
+            <ShareBar
+              link="https://www.facebook.com/"
+              value="Facebook"
+              icon={
+                <Facebook className="!w-10 !h-10 text-blue-600 hover:text-blue-700" />
+              }
             />
-            <ShareBar 
-              link="https://web.whatsapp.com/" 
-              value="whatsapp" 
-              icon={<WhatsApp />} 
-              className="!bg-green-500 hover:!bg-green-600 !text-white p-3 rounded-full"
+            <ShareBar
+              link="https://web.whatsapp.com/"
+              value="whatsapp"
+              icon={
+                <WhatsApp className="!w-10 !h-10 text-green-500 hover:text-green-600" />
+              }
             />
-            <ShareBar 
-              link="https://www.instagram.com/" 
-              value="Instagram" 
-              icon={<Instagram />} 
-              className="!bg-pink-500 hover:!bg-pink-600 !text-white p-3 rounded-full"
+            <ShareBar
+              link="https://www.instagram.com/"
+              value="Instagram"
+              icon={<Instagram className="!w-10 !h-10 text-pink-500 hover:text-pink-600" />}
             />
           </div>
         </div>
