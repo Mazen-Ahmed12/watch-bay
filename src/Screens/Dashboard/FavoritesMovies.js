@@ -1,5 +1,5 @@
-import { useGenres, useMovieDetails, useMovieImages } from "api/queries";
-import { useEffect, useRef, useState } from "react";
+import { useGenres, useMovieDetails } from "api/queries";
+import { useEffect, useState } from "react";
 import Table from "../../components/Table";
 import SideBar from "./SideBar";
 import { useLocation } from "react-router-dom";
@@ -8,112 +8,60 @@ function FavoritesMovies() {
   const [favorites, setFavorites] = useState([]);
   const location = useLocation();
   const movieId = location.state?.movieId;
-  const processedMovies = useRef(new Set()); // Track processed movie IDs
-  const isProcessing = useRef(false); // Prevent concurrent processing
 
-  // Fetch genres once for mapping
   const { data: genresData } = useGenres();
-  // Fetch details and images
   const { data: details } = useMovieDetails(movieId, { enabled: !!movieId });
-  const { data: images } = useMovieImages(movieId, { enabled: !!movieId });
+
   // Load favorites from localStorage on mount
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favoritesMovies");
     if (savedFavorites) {
       try {
-        const parsedFavorites = JSON.parse(savedFavorites);
-        setFavorites(parsedFavorites);
+        setFavorites(JSON.parse(savedFavorites));
       } catch (error) {
-        console.error("Error parsing favorites from localStorage:", error);
-        setFavorites([]);
+        console.error("Error parsing favorites:", error);
         localStorage.removeItem("favoritesMovies");
       }
     }
   }, []);
 
-  // Save favorites to localStorage whenever it changes (with deduplication)
+  // Add new movie when details are available
   useEffect(() => {
-    if (favorites.length > 0) {
-      // Ensure no duplicates before saving
-      const uniqueFavorites = favorites.filter((movie, index, self) =>
-        index === self.findIndex(m => m.id === movie.id)
-      );
-      localStorage.setItem("favoritesMovies", JSON.stringify(uniqueFavorites));
+    if (!movieId || !details || !genresData) return;
 
-      // Update state if duplicates were removed
-      if (uniqueFavorites.length !== favorites.length) {
-        setFavorites(uniqueFavorites);
-      }
-    } else {
-      localStorage.removeItem("favoritesMovies");
-    }
-  }, [favorites]);
+    setFavorites((prev) => {
+      // Skip if already in favorites
+      if (prev.some((fav) => fav.id === details.id)) return prev;
 
-  // Effect to add new movie when movieId prop changes
-  useEffect(() => {
-    if (!movieId || !details || !images || !genresData) {
-      return; // Skip if no ID or missing data
-    }
+      const category =
+        details.genres
+          ?.map(
+            (genre) => genresData.genres?.find((g) => g.id === genre.id)?.name
+          )
+          ?.filter(Boolean)
+          ?.join(", ") || "N/A";
 
-    // Prevent concurrent processing and duplicate processing
-    if (isProcessing.current || processedMovies.current.has(movieId)) {
-      return; // Already processing or already processed
-    }
+      const newMovie = {
+        id: details.id,
+        name: details.title,
+        category,
+        language: details.original_language?.toUpperCase() || "EN",
+        year: details.release_date ? details.release_date.split("-")[0] : "N/A",
+        time: details.runtime ? `${details.runtime} min` : "N/A",
+        image: details.poster_path
+          ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
+          : null,
+      };
 
-    // Check if already in favorites (most reliable check)
-    if (favorites.some((fav) => fav.id === movieId)) {
-      processedMovies.current.add(movieId); // Mark as processed
-      return; // Skip if already exists
-    }
-
-    // Set processing flag to prevent concurrent additions
-    isProcessing.current = true;
-
-    // Small delay to ensure state consistency
-    setTimeout(() => {
-      // Double-check after delay
-      setFavorites(currentFavorites => {
-        const movieExists = currentFavorites.some((fav) => fav.id === movieId);
-        if (movieExists) {
-          processedMovies.current.add(movieId);
-          isProcessing.current = false;
-          return currentFavorites; // Don't add duplicate
-        }
-
-        // Map genres to category string
-        const category =
-          details.genres
-            ?.map(
-              (genre) => genresData.genres?.find((g) => g.id === genre.id)?.name
-            )
-            ?.filter(Boolean)
-            ?.join(", ") || "N/A";
-
-        const newMovie = {
-          id: details.id,
-          name: details.title,
-          category,
-          language: details.original_language?.toUpperCase() || "EN",
-          year: details.release_date ? details.release_date.split("-")[0] : "N/A",
-          time: details.runtime ? `${details.runtime} min` : "N/A",
-          image: details.poster_path
-            ? `https://image.tmdb.org/t/p/w500${details.poster_path}`
-            : null,
-        };
-
-        processedMovies.current.add(movieId); // Mark as processed
-        isProcessing.current = false; // Clear processing flag
-
-        return [...currentFavorites, newMovie];
-      });
-    }, 100); // Small delay to ensure state consistency
-
-  }, [movieId, details, images, genresData]); // eslint-disable-line react-hooks/exhaustive-deps
+      const updated = [...prev, newMovie];
+      localStorage.setItem("favoritesMovies", JSON.stringify(updated));
+      return updated;
+    });
+  }, [movieId, details, genresData]);
 
   const handleDeleteAll = () => {
     setFavorites([]);
-    processedMovies.current.clear(); // Clear processed movies when deleting all
-    isProcessing.current = false; // Reset processing flag
+    localStorage.removeItem("favoritesMovies");
   };
 
   return (
