@@ -2,19 +2,14 @@ import { useMemo } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { FaCloudDownloadAlt, FaHeart } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMovieDetails, useMovieVideos } from "../api/queries";
+import { useMovieVideos } from "../api/queries";
 import Layout from "../Layout/Layout";
 
 function WatchPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Use the new query hooks
-  const {
-    data: movie,
-    isLoading: isMovieLoading,
-    isError: isMovieError,
-  } = useMovieDetails(id);
+
   const {
     data: videosData,
     isLoading: isVideosLoading,
@@ -29,11 +24,11 @@ function WatchPage() {
         video.site === "YouTube" &&
         (video.type === "Trailer" || video.type === "Teaser")
     );
-  }, [videosData]);
+    }, [videosData]);
 
-  const isLoading = isMovieLoading || isVideosLoading;
+  const isLoading = isVideosLoading;
   const error =
-    isMovieError || isVideosError
+    isVideosError
       ? "Failed to load movie data. Please try again later."
       : null;
 
@@ -73,7 +68,7 @@ function WatchPage() {
             <div className="spinner">Loading...</div>
           </div>
         ) : error ? (
-          <div className="w-full h-96 text-red-500 flex-colo">{error}</div>
+          <div className="w-full h-96 text-red-500 flex-colo">error....</div>
         ) : youtubeVideos.length > 0 ? (
           <div className="overflow-hidden w-full h-full rounded-lg">
             <div className="relative pt-[56.25%] h-0 overflow-hidden">

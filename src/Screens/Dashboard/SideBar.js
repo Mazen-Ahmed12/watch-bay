@@ -15,14 +15,14 @@ function SideBar({ children }) {
       icon: BsFillGridFill,
     },
     {
-      name: "Add Movie",
-      link: "/addmovie",
-      icon: RiMovie2Fill,
-    },
-    {
       name: "Favorites Movies",
       link: "/favorites",
       icon: FaHeart,
+    },
+    {
+      name: "Add Movie",
+      link: "/addmovie",
+      icon: RiMovie2Fill,
     },
     {
       name: "Update Profile",

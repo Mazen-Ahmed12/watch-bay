@@ -7,7 +7,6 @@ import {
 } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import FavoritesMovies from "Screens/Dashboard/FavoritesMovies";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useTopRatedMovies } from "../../api/queries";
