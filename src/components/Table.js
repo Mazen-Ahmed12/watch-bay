@@ -19,7 +19,7 @@ function Table({ data, admin }) {
             <th className={Head}>Language</th>
             <th className={Head}>Year</th>
             <th className={Head}>Runtime</th>
-            <th className={`${Head} text-end`}>Actions</th>
+            <th className={`text-center ${Head}`}>Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-800 bg-main">
@@ -43,7 +43,7 @@ function Table({ data, admin }) {
               <td className={Text}>{movie.language}</td>
               <td className={Text}>{movie.year}</td>
               <td className={Text}>{movie.time}</td>
-              <td className={`float-right gap-2 ${Text} flex-rows`}>
+              <td className={`gap-2 ${Text} flex-rows`}>
                 {admin ? (
                   <>
                     <button className="gap-2 px-2 py-1 rounded border border-border bg-dry flex-rows text-border">

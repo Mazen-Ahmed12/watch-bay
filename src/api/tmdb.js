@@ -184,6 +184,33 @@ export const tmdbAPI = {
     );
 
     return { ...data, results: moviesWithDetails };
+  },
+  
+   getCounts: async () => {
+    try {
+      // Fetch total movies
+      const moviesRes = await fetch(
+        `${BASE_URL}/discover/movie?api_key=${API_KEY}`,
+        { headers }
+      );
+      const moviesData = await moviesRes.json();
+
+      // Fetch genres
+      const genresRes = await fetch(
+        `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`,
+        { headers }
+      );
+      const genresData = await genresRes.json();
+
+      return {
+        totalMovies: moviesData?.total_results ?? 0,
+        totalCategories: genresData?.genres?.length ?? 0,
+        genres: genresData?.genres ?? []
+      };
+    } catch (err) {
+      console.error("getCounts error:", err);
+      return { totalMovies: 0, totalCategories: 0, genres: [] };
+    }
   }
 
 };

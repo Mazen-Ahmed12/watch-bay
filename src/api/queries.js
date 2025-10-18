@@ -117,3 +117,11 @@ export const useDiscoverMovies = (filters, page = 1) => {
     refetchOnWindowFocus: false,
   });
 };
+
+export const useCounts = () => {
+  return useQuery({
+    queryKey: ['counts'],
+    queryFn: () => tmdbAPI.getCounts(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
+};
