@@ -8,7 +8,7 @@ import Titles from "../Titles";
 function PopularMovies() {
   const { data, isLoading, isError } = usePopularMovies();
   const movies = data?.results?.slice(0, 8) || [];
-
+  
   if (isLoading) {
     return (
       <div className="container mx-auto px-2 my-6">

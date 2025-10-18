@@ -1,11 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Aos from "aos";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import DrawerContext from "./Context/DrawerContext";
 import AboutUs from "./Screens/AboutUs";
 import ContactUs from "./Screens/ContactUS";
 import AddMovie from "./Screens/Dashboard/Admin/AddMovies";
-import Categories from "./Screens/Dashboard/Admin/Categories";
 import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
 import FavoritesMovies from "./Screens/Dashboard/FavoritesMovies";
 import Password from "./Screens/Dashboard/Password";
@@ -20,7 +20,6 @@ import SearchResults from "./Screens/SearchResults";
 import SingleMovie from "./Screens/SingleMovie";
 import WatchPage from "./Screens/WatchPage";
 import ScrollOnTop from "./ScrollOnTop";
-import { useEffect } from "react";
 // Create a client
 const queryClient = new QueryClient();
 

@@ -40,7 +40,7 @@ function Table({ data, admin }) {
               </td>
               <td className={`truncate ${Text}`}>{movie.name}</td>
               <td className={Text}>{movie.category}</td>
-              <td className={Text}>{movie.language}</td>
+              <td className={`text-center ${Text}`}>{movie.language}</td>
               <td className={Text}>{movie.year}</td>
               <td className={Text}>{movie.time}</td>
               <td className={`gap-2 ${Text} flex-rows`}>

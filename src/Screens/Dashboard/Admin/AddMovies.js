@@ -63,7 +63,7 @@ function AddMovie() {
               <img
                 src={`${process.env.PUBLIC_URL}/images/14.jpg`}
                 alt=""
-                className="object-cover w-full h-full rounded"
+                className="object-contain w-full h-full rounded"
               />
             </div>
           </div>
@@ -80,7 +80,7 @@ function AddMovie() {
               <img
                 src={`${process.env.PUBLIC_URL}/images/13.jpg`}
                 alt=""
-                className="object-cover w-full h-full rounded"
+                className="object-contain w-full h-full rounded"
               />
             </div>
           </div>
@@ -119,7 +119,7 @@ function AddMovie() {
                 <img
                   src={`${process.env.PUBLIC_URL}/images/${user.image ? user.image : "user.png"}`}
                   alt={user.fullName}
-                  className="object-cover mb-2 w-full h-24 rounded"
+                  className="object-contain mb-2 w-full h-24 rounded"
                 />
                 <p>{user.fullName}</p>
                 <div className="gap-2 mt-2 w-full flex-rows">

@@ -59,7 +59,7 @@ function SideBar({ children }) {
             data-aos-duration="1000"
             data-aos-delay="10"
             data-aos-offset="200"
-            className="col-span-6 p-6 rounded-md border border-gray-800 bg-dry"
+            className="col-span-6 p-4 rounded-md border border-gray-800 bg-dry"
           >
             {children}
           </div>

@@ -51,7 +51,7 @@ export default function PopularMoviesPage() {
   if (isLoading && movies.length === 0) {
     return (
       <Layout>
-        <div className="container mx-auto px-2 my-6">
+        <div className="container px-2 mx-auto my-6">
           <Titles title="Popular Movies" Icon={MdFavorite} />
           <div className="w-full flex-colo min-h-[60vh] bg-dry rounded-lg">
             <Loader />
@@ -64,15 +64,15 @@ export default function PopularMoviesPage() {
   if (status === 'error') {
     return (
       <Layout>
-        <div className="container mx-auto px-2 my-6">
+        <div className="container px-2 mx-auto my-6">
           <Titles title="Popular Movies" Icon={MdFavorite} />
           <div className="w-full flex-colo min-h-[60vh] bg-dry rounded-lg p-4">
-            <p className="text-red-500 text-lg mb-4">
+            <p className="mb-4 text-lg text-red-500">
               {error?.message || 'Error loading movies. Please try again.'}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-subMain text-white rounded hover:bg-opacity-90"
+              className="px-4 py-2 text-white rounded bg-subMain hover:bg-opacity-90"
             >
               Retry
             </button>
@@ -84,10 +84,10 @@ export default function PopularMoviesPage() {
 
   return (
     <Layout>
-      <div className="min-h-screen p-2 lg:px-4">
+      <div className="p-2 min-h-screen lg:px-4">
         <div className="container mx-auto">
           <Titles title="Popular Movies" Icon={MdFavorite} />
-          <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
+          <div className="grid grid-cols-1 gap-10 mt-6 sm:mt-12 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
             {movies.map((movie) => (
               <Movie 
                 key={`${movie.id}-${movie.title}`}
@@ -100,16 +100,16 @@ export default function PopularMoviesPage() {
             ))}
           </div>
           
-          <div ref={loaderRef} className="w-full flex-colo my-10">
+          <div ref={loaderRef} className="my-10 w-full flex-colo">
             {isFetchingNextPage ? (
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex gap-2 justify-center items-center">
                 <MdFavorite className="animate-spin text-subMain" />
                 <span>Loading more movies...</span>
               </div>
             ) : hasNextPage ? (
               <button
                 onClick={() => fetchNextPage()}
-                className="flex-rows gap-3 text-white py-3 px-8 rounded font-semibold border-2 border-subMain hover:bg-subMain hover:text-white transition-colors duration-300"
+                className="gap-3 px-8 py-3 font-semibold text-white rounded border-2 transition-colors duration-300 flex-rows border-subMain hover:bg-subMain hover:text-white"
               >
                 Load More Movies
               </button>
