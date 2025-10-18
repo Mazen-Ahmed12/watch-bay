@@ -63,7 +63,7 @@ function TopRated() {
           ) : (
             topRatedMovies.map((movie) => (
               <SwiperSlide key={movie.id}>
-                <div className="overflow-hidden p-4 rounded-lg border h-rate hovered border-border bg-dry flex-colo">
+                <div className="overflow-hidden rounded-lg border h-rate hovered border-border bg-dry flex-colo">
                   <img
                     src={
                       movie.poster_path

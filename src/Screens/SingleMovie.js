@@ -3,9 +3,9 @@ import { FaSpinner } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMovieDetails, useMovieReviews } from "../api/queries";
 import ShareMovieModal from "../components/modals/ShareModal";
-import MovieCasts from "../components/Single/MovieCasts";
-import MovieInfo from "../components/Single/MovieInfo";
-import MovieRates from "../components/Single/MovieRates";
+import MovieCasts from "../components/SingleMovie/MovieCasts";
+import MovieInfo from "../components/SingleMovie/MovieInfo";
+import MovieRates from "../components/SingleMovie/MovieRates";
 import Layout from "../Layout/Layout";
 
 function SingleMovie() {
