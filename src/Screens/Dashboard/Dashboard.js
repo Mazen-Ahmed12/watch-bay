@@ -1,10 +1,10 @@
 import { useCounts } from "api/queries";
 import { FaRegListAlt } from "react-icons/fa";
 import { HiViewGridAdd } from "react-icons/hi";
-import Table from "../../../components/Table";
-import { Movies } from "../../../Data/MovieData";
-import SideBar from "../SideBar";
-import { useMovieHandler } from "../../../utils/MovieHandler";
+import Table from "../../components/Table";
+import { Movies } from "../../Data/MovieData";
+import SideBar from "./SideBar";
+import { useMovieHandler } from "../../utils/MovieHandler";
 import { useEffect, useState } from "react";
 
 function Dashboard() {
