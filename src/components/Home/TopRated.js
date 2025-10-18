@@ -6,8 +6,8 @@ import {
   BsChevronRight,
 } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { Autoplay, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
+import { Autoplay, Navigation, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useTopRatedMovies } from "../../api/queries";
 import Titles from "../Titles";
@@ -20,6 +20,14 @@ function TopRated() {
   const [prevEl, setPrevEl] = useState(null);
   const navigate = useNavigate();
 
+  const handleAddToDashboard = (movieId) => {
+    // Add movie to dashboard queue by setting it in localStorage
+    // The Dashboard component will detect this and add it to the queue
+    localStorage.setItem("dashboardMovieToAdd", movieId.toString());
+
+    // Navigate to the movie page
+    navigate(`/movie/${movieId}`);
+  };
   const className =
     "w-8 h-8 text-sm text-white hover:bg-dry transitions rouned flex-colo bg-subMain";
 
@@ -29,10 +37,19 @@ function TopRated() {
       <div className="mt-10">
         <Swiper
           navigation={{ nextEl, prevEl }}
-          autoplay={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           speed={1000}
           loop={true}
-          modules={[Navigation, Autoplay]}
+          mousewheel={{
+            forceToAxis: true, // vertical wheel scrolls horizontally
+            releaseOnEdges: false, // keeps looping instead of stopping
+            sensitivity: 1, // adjust scroll sensitivity
+          }}
+          modules={[Navigation, Autoplay, Mousewheel]}
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -71,7 +88,7 @@ function TopRated() {
                         : ""
                     }
                     alt={movie.title}
-                    className="object-cover w-full h-full rounded-lg"
+                    className="object-contain w-full h-full rounded-lg"
                   />
                   <div className="flex absolute top-0 right-0 bottom-0 left-0 flex-col gap-6 justify-center items-center px-4 text-center bg-black bg-opacity-70 hoveres">
                     <button
@@ -82,12 +99,12 @@ function TopRated() {
                     >
                       <FaHeart />
                     </button>
-                    <Link
+                    <button
                       className="text-xl font-semibold text-white trancuted line-clamp-2"
-                      to={`/movie/${movie.id}`}
+                      onClick={() => handleAddToDashboard(movie.id)}
                     >
                       {movie.title}
-                    </Link>
+                    </button>
                     <div className="flex gap-2">
                       <Rating
                         name="read-only"

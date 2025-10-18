@@ -1,16 +1,36 @@
-import React from "react";
-import { FaRegListAlt, FaUser } from "react-icons/fa";
-import SideBar from "../SideBar";
+import { useCounts } from "api/queries";
+import { FaRegListAlt } from "react-icons/fa";
 import { HiViewGridAdd } from "react-icons/hi";
 import Table from "../../../components/Table";
 import { Movies } from "../../../Data/MovieData";
-import { useCounts } from "api/queries";
+import SideBar from "../SideBar";
+import { useMovieHandler } from "../../../utils/MovieHandler";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
   const { data, isLoading, error } = useCounts();
+  const [dashboardMovieId, setDashboardMovieId] = useState(null);
+
+  // Check for movie to add from localStorage
+  useEffect(() => {
+    const movieToAdd = localStorage.getItem("dashboardMovieToAdd");
+    if (movieToAdd) {
+      setDashboardMovieId(movieToAdd);
+      // Clear it immediately to prevent duplicate processing
+      localStorage.removeItem("dashboardMovieToAdd");
+    }
+  }, []);
+
+  const { movies: recentMovies } = useMovieHandler({
+    type: 'dashboard',
+    movieId: dashboardMovieId,
+  });
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading counts</p>;
+
   console.log("Counts data:", data);
+
   const DashboardData = [
     {
       bg: "bg-orange-600",
@@ -25,6 +45,7 @@ function Dashboard() {
       total: data?.totalCategories ?? 0,
     },
   ];
+
   return (
     <SideBar>
       <h2 className="text-xl font-bold">Dashboard</h2>
@@ -44,7 +65,7 @@ function Dashboard() {
         ))}
       </div>
       <h3 className="my-6 font-medium text-md text-border">Recent Movies</h3>
-      <Table data={Movies.slice(0, 5)} admin={true} />
+      <Table data={recentMovies.length > 0 ? recentMovies : Movies.slice(0, 5)} admin={true} />
     </SideBar>
   );
 }

@@ -108,12 +108,19 @@ export const useInfinitePopularMovies = () => {
   });
 };
 
-export const useDiscoverMovies = (filters, page = 1) => {
-  return useQuery({
-    queryKey: ['discoverMovies', filters, page],
-    queryFn: () => tmdbAPI.discoverMovies({ ...filters, page }),
-    keepPreviousData: true,
-    staleTime: 1000 * 60 * 30,
+// Discover movies with filters (infinite scroll)
+export const useInfiniteDiscoverMovies = (filters) => {
+  return useInfiniteQuery({
+    queryKey: ['infiniteDiscoverMovies', filters],
+    queryFn: async ({ pageParam = 1 }) => {
+      const response = await tmdbAPI.discoverMovies({ ...filters, page: pageParam });
+      return response;
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length + 1;
+      return nextPage <= (lastPage?.total_pages || 1) ? nextPage : undefined;
+    },
+    staleTime: 1000 * 60 * 30, // 30 minutes
     refetchOnWindowFocus: false,
   });
 };
