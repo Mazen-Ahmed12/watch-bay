@@ -162,28 +162,16 @@ export const tmdbAPI = {
     const res = await fetch(`${BASE_URL}/discover/movie?${params.toString()}`, { headers });
     const data = await res.json();
 
-    // Filter languages and vote count
+    // Filter languages and vote count (basic filtering only)
     const filteredResults = data.results.filter(
       m =>
         (m.original_language === "en" || m.original_language === "ja") &&
         (m.vote_count || 0) >= 100
     );
 
-    // Enrich with runtime + genre names
-    const moviesWithDetails = await Promise.all(
-      filteredResults.map(async movie => {
-        const detailsRes = await fetch(`${BASE_URL}/movie/${movie.id}?api_key=${API_KEY}`, { headers });
-        const details = await detailsRes.json();
-        return {
-          ...movie,
-          runtime: details.runtime,
-          genres: details.genres.map(g => g.name),
-          genre_ids: details.genres.map(g => g.id)
-        };
-      })
-    );
-
-    return { ...data, results: moviesWithDetails };
+    // For performance, return basic movie data without additional API calls
+    // The detailed information can be fetched when needed for individual movies
+    return { ...data, results: filteredResults };
   },
   
    getCounts: async () => {

@@ -105,6 +105,7 @@ export const useInfinitePopularMovies = () => {
       return nextPage <= (lastPage?.total_pages || 1) ? nextPage : undefined;
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
+    gcTime: 1000 * 60 * 15, // Keep in cache for 15 minutes
   });
 };
 
@@ -120,8 +121,9 @@ export const useInfiniteDiscoverMovies = (filters) => {
       const nextPage = allPages.length + 1;
       return nextPage <= (lastPage?.total_pages || 1) ? nextPage : undefined;
     },
-    staleTime: 1000 * 60 * 30, // 30 minutes
+    staleTime: 1000 * 60 * 10, // Reduced from 30 minutes to 10 minutes for better responsiveness
     refetchOnWindowFocus: false,
+    gcTime: 1000 * 60 * 15, // Keep in cache for 15 minutes (was using default)
   });
 };
 
