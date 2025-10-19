@@ -29,7 +29,7 @@ function Table({ data, admin }) {
                 <div className="overflow-hidden p-1 w-12 h-12 rounded border bg-dry border-border">
                   {movie.image ? (
                     <img
-                      className="object-cover w-full h-full"
+                      className="object-fill w-full h-full"
                       src={movie.image}
                       alt={movie?.name}
                     />

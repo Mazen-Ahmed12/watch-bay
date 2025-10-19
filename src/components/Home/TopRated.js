@@ -88,7 +88,7 @@ function TopRated() {
                         : ""
                     }
                     alt={movie.title}
-                    className="object-contain w-full h-full rounded-lg"
+                    className="object-fill w-full h-full rounded-lg"
                   />
                   <div className="flex absolute top-0 right-0 bottom-0 left-0 flex-col gap-6 justify-center items-center px-4 text-center bg-black bg-opacity-70 hoveres">
                     <button

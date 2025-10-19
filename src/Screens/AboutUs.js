@@ -5,12 +5,12 @@ import Layout from './../Layout/Layout';
 function AboutUs() {
   return (
     <Layout>
-      <div className="min-height-screen container mx-auto px-2 my-6">
+      <div className="container px-2 mx-auto my-6 min-height-screen">
         <Head title="About Us" />
-        <div className="xl:py-20 py-10 px-4">
-          <div className="grid grid-flow-row xl:grid-cols-2 gap-4 xl:gap-16 items-center">
+        <div className="px-4 py-10 xl:py-20">
+          <div className="flex flex-col gap-4 items-center xl:flex-row xl:gap-16">
             <div>
-              <h3 className="text-xl lg:text-3xl mb-4 font-semibold">
+              <h3 className="mb-4 text-xl font-semibold lg:text-3xl">
                 Welcome to our WatchBay
               </h3>
               <div className="mt-3 text-sm leading-8 text-text">
@@ -36,27 +36,27 @@ function AboutUs() {
                   essentially unchanged.
                 </p>
               </div>
-              <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <div className="p-8 bg-dry rounded-lg">
-                  <span className="text-3xl block font-extrabold">10K</span>
-                  <h4 className="text-lg font-semibold my-2">Listed Movies</h4>
-                  <p className="mb-0 text-text leading-7 text-sm">
+              <div className="flex flex-col gap-6 mt-8 md:flex-row">
+                <div className="p-8 w-full rounded-lg md:w-1/2 bg-dry">
+                  <span className="block text-3xl font-extrabold">10K</span>
+                  <h4 className="my-2 text-lg font-semibold">Listed Movies</h4>
+                  <p className="mb-0 text-sm leading-7 text-text">
                     Lorem Ipsum is simply dummy text of the printing and
                   </p>
                 </div>
-                <div className="p-8 bg-dry rounded-lg">
-                  <span className="text-3xl block font-extrabold">8K</span>
-                  <h4 className="text-lg font-semibold my-2">Lovely Users</h4>
-                  <p className="mb-0 text-text leading-7 text-sm">
+                <div className="p-8 w-full rounded-lg md:w-1/2 bg-dry">
+                  <span className="block text-3xl font-extrabold">8K</span>
+                  <h4 className="my-2 text-lg font-semibold">Lovely Users</h4>
+                  <p className="mb-0 text-sm leading-7 text-text">
                     Completely free, without registration! Lorem Ipsum is simply
                   </p>
                 </div>
               </div>
             </div>
             <img
-              src="https://picsum.photos/id/230/800/800"
+              src="https://picsum.photos/id/870/800/800"
               alt="aboutus"
-              className="w-full xl:block hidden h-header rounded-lg object-fit"
+              className="hidden object-fill w-full rounded-lg xl:w-auto xl:block h-header"
             />
           </div>
         </div>

@@ -7,11 +7,11 @@ import { Typography } from "@mui/material";
 function CastsModal({ modalOpen, setModalOpen, cast }) {
   return (
     <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-      <div className="inline-block border border-border w-full align-middle p-10  h-full bg-main text-white rounded-2xl">
-        <h2 className="text-3xl flex-colo font-bold">
+      <div className="inline-block p-10 w-full h-full text-white align-middle rounded-2xl border border-border bg-main">
+        <h2 className="text-3xl font-bold flex-colo">
           {cast ? "Update Cast" : "Create Cast"}
         </h2>
-        <form className="flex flex-col gap-6 text-left mt-6">
+        <form className="flex flex-col gap-6 mt-6 text-left">
           <Input
             label="Cast Name"
             placeholder={cast ? cast.fullName : "jhon doe"}
@@ -26,17 +26,17 @@ function CastsModal({ modalOpen, setModalOpen, cast }) {
               Cast Image
             </Typography>
             <Uploader />
-            <div className="w-32 h-32 p-2 bg-main border border-border rounded">
+            <div className="p-2 w-32 h-32 rounded border bg-main border-border">
               <img
-                src="https://picsum.photos/300"
+                src="https://picsum.photos/300/600/300"
                 alt=""
-                className="w-full h-full object-cover rounded"
+                className="object-fill w-full h-full rounded"
               />
             </div>
           </div>
           <button
             onClick={() => setModalOpen(false)}
-            className="w-full flex-rows gap-4 py-3 mt-4 text-lg transitions hover:bg-dry border-3 border-subMain rounded bg-subMain text-white"
+            className="gap-4 py-3 mt-4 w-full text-lg text-white rounded flex-rows transitions hover:bg-dry border-3 border-subMain bg-subMain"
           >
             {cast ? "Update" : "Add"}
           </button>

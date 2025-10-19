@@ -16,17 +16,17 @@ function MovieInfo({ movie, setModalOpen }) {
         <img
           src={movie.backdrop}
           alt={movie.title || "Movie Backdrop"}
-          className="hidden object-cover w-full h-full xl:inline-block"
+          className="hidden object-fill w-full h-full xl:inline-block"
         />
       )}
       <div className="top-0 right-0 bottom-0 left-0 xl:bg-main bg-dry flex-colo xl:bg-opacity-90 xl:absolute">
-        <div className="container grid-cols-3 gap-8 px-3 py-10 mx-auto 2xl:px-32 xl:grid flex-colo lg:py-20">
+        <div className="container flex flex-col gap-8 px-3 py-10 mx-auto 2xl:px-32 xl:flex-row xl:gap-8 lg:py-20">
           {/* Movie Poster - Hidden on mobile/tablet, shown on desktop */}
-          <div className="hidden overflow-hidden order-last w-full rounded-lg border border-gray-800 xl:col-span-1 xl:order-none xl:block h-header bg-dry">
+          <div className="hidden overflow-hidden order-last w-full xl:w-80 xl:order-none xl:block h-header bg-dry rounded-lg border border-gray-800">
             <img
               src={movie?.image || "/images/placeholder-poster.png"}
               alt={movie?.title || "Movie Poster"}
-              className="object-contain w-full h-full"
+              className="object-fill w-full h-full"
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = "/images/placeholder-poster.png";
@@ -35,14 +35,14 @@ function MovieInfo({ movie, setModalOpen }) {
           </div>
 
           {/* Movie Details */}
-          <div className="col-span-2 relative">
+          <div className="flex-1 relative">
             {/* Mobile/Tablet Background Image */}
             {movie?.image && (
               <div className="xl:hidden absolute inset-0 rounded-lg overflow-hidden opacity-20">
                 <img
                   src={movie.image}
                   alt={movie.title || "Movie Background"}
-                  className="object-cover w-full h-full"
+                  className="object-fill w-full h-full"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.style.display = "none";

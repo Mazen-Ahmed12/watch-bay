@@ -12,7 +12,7 @@ function Login() {
           <img
             src="watchbay.jpg"
             alt="logo"
-            className="w-full h-36 object-cover"
+            className="w-full h-36 object-fill"
           />
           <Input
             label="Email"

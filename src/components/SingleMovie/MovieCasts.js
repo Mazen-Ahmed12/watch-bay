@@ -21,7 +21,7 @@ const CastImage = React.memo(({ src, alt }) => {
         ref={imgRef}
         src={imageUrl}
         alt={alt}
-        className={`w-full h-full object-contain transition-opacity duration-200 ${
+        className={`w-full h-full object-fill transition-opacity duration-200 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
         loading="lazy"

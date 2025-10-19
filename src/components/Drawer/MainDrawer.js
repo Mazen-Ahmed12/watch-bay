@@ -8,7 +8,7 @@ function MainDrawer({ children, drawerOpen, closeDrawer }) {
       open={drawerOpen}
       onClose={closeDrawer}
     >
-      <div className="w-screen h-screen">{children}</div>
+      <div className="w-80 h-screen overflow-hidden">{children}</div>
     </Drawer>
   );
 }

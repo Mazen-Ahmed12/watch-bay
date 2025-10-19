@@ -11,6 +11,8 @@ import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import MainDrawer from "./MainDrawer";
 import ShareBar from "./ShareBar";
+import { FiSettings } from "react-icons/fi";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 function MenuDrawer({ drawerOpen, toggleDrawer }) {
   const active = "bg-dry text-subMain";
@@ -22,9 +24,14 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
 
   const WebSitePages = [
     {
-      name: "Movies",
-      link: "/movies",
-      icon: MovieCreation,
+      name: "Update Profile",
+      link: "/profile",
+      icon: FiSettings,
+    },
+    {
+      name: "Change Password",
+      link: "/password",
+      icon: RiLockPasswordLine,
     },
     {
       name: "About Us",
@@ -46,7 +53,7 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
             <img
               src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
               alt="logo"
-              className="object-contain w-full h-12"
+              className="object-fill w-full h-12"
             />
           </Link>
           <IconButton
@@ -87,7 +94,9 @@ function MenuDrawer({ drawerOpen, toggleDrawer }) {
             <ShareBar
               link="https://www.instagram.com/"
               value="Instagram"
-              icon={<Instagram className="!w-10 !h-10 text-pink-500 hover:text-pink-600" />}
+              icon={
+                <Instagram className="!w-10 !h-10 text-pink-500 hover:text-pink-600" />
+              }
             />
           </div>
         </div>
