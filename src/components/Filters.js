@@ -78,18 +78,18 @@ function Filters({ onFilterChange, genres = [] }) {
   ];
 
   return (
-    <div className="my-6 grid md:grid-cols-4 grid-cols-2 lg:gap-4 gap-3 rounded p-4 bg-dry border border-border">
+    <div className="flex flex-col gap-3 p-4 my-6 rounded border md:flex-row lg:gap-4 bg-dry border-border">
       {filters.map(filter => (
-        <div key={filter.key} className="relative">
-          <label className="block text-sm font-medium text-gray-300 mb-1">
+        <div key={filter.key} className="relative w-full md:w-1/4">
+          <label className="block mb-1 text-sm font-medium text-gray-300">
             {filter.label}
           </label>
           <Select
             value={filter.value || ""}
             onChange={e => filter.onChange(e.target.value)}
             displayEmpty
-            className="w-full bg-main text-white rounded"
-            IconComponent={() => <FaChevronDown className="text-white mr-4" />}
+            className="w-full bg-main !text-white rounded"
+            IconComponent={() => <FaChevronDown className="mr-4 text-white" />}
             renderValue={selected => {
               if (!selected) {
                 return <span className="text-textGray">{filter.label}</span>;
@@ -105,7 +105,7 @@ function Filters({ onFilterChange, genres = [] }) {
                 <div className="flex items-center w-full">
                   <span className="flex-1">{item.title}</span>
                   {filter.value === item.value && (
-                    <FaCheck className="text-subMain ml-2" />
+                    <FaCheck className="ml-2 text-subMain" />
                   )}
                 </div>
               </MenuItem>

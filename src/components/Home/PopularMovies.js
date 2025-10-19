@@ -11,7 +11,7 @@ function PopularMovies() {
   
   if (isLoading) {
     return (
-      <div className="container mx-auto px-2 my-6">
+      <div className="container px-2 mx-auto my-6">
         <Titles title="Popular Movies" Icon={MdFavorite} />
         <div className="w-full flex-colo">
           <Loader />
@@ -22,7 +22,7 @@ function PopularMovies() {
 
   if (isError || !data?.results) {
     return (
-      <div className="container mx-auto px-2 my-6">
+      <div className="container px-2 mx-auto my-6">
         <Titles title="Error Loading Movies" Icon={MdFavorite} />
         <div className="w-full flex-colo">
           <p className="text-red-500">Failed to load movies. Please try again later.</p>
@@ -37,7 +37,7 @@ function PopularMovies() {
         <Titles title="Popular Movies" Icon={MdFavorite} />
       </div>
 
-      <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
+      <div className="flex flex-col gap-8 justify-center mt-6 sm:mt-10 sm:flex-row sm:flex-wrap">
         {movies.map((movie) => (
           <Movie
             key={`${movie.id}-${movie.title}`}
@@ -55,7 +55,7 @@ function PopularMovies() {
       <div className="flex justify-center mt-8">
         <Link
           to="/popular-movies"
-          className="w-32 h-14 flex items-center justify-center text-white bg-subMain text-xl rounded-full font-bold hover:bg-main hover:text-white transition-colors duration-300"
+          className="flex justify-center items-center w-32 h-14 text-xl font-bold text-white rounded-full transition-colors duration-300 bg-subMain hover:bg-main hover:text-white"
         >
           View All
         </Link>

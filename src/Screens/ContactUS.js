@@ -31,11 +31,11 @@ function ContactUs() {
     <Layout>
       <div className="min-height-screen container mx-auto px-2 my-6">
         <Head title="Contact Us" />
-        <div className="grid mg:grid-cols-2 gap-6 lg:my-20 my-10 lg:grid-cols-3 xl:gap-8">
+        <div className="flex flex-col gap-6 my-10 lg:my-20 xl:gap-8 md:flex-row lg:flex-row">
           {ContactData.map((item) => (
             <div
               key={item.id}
-              className="border border-border flex-colo p-10 bg-dry rounded-lg text-center"
+              className="w-full md:w-1/2 lg:w-1/3 border border-border flex-colo p-10 bg-dry rounded-lg text-center"
             >
               <span className="flex-colo w-20 h-20 mb-4 rounded-full bg-main text-subMain text-2xl">
                 <item.icon />

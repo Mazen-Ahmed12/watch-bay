@@ -63,13 +63,13 @@ function MoviesPage() {
   if (isLoading && movies.length === 0) {
     return (
       <Layout>
-        <div className="min-height-screen container mx-auto px-2 my-6">
+        <div className="container px-2 mx-auto my-6 min-height-screen">
           <Filters
             onFilterChange={handleFilterChange}
             genres={genresData?.genres || []}
           />
           <div className="w-full flex-colo min-h-[60vh] bg-dry rounded-lg">
-            <CgSpinner className="animate-spin text-subMain text-4xl" />
+            <CgSpinner className="text-4xl animate-spin text-subMain" />
             <p className="mt-4 text-lg">Loading movies...</p>
           </div>
         </div>
@@ -80,18 +80,18 @@ function MoviesPage() {
   if (status === 'error') {
     return (
       <Layout>
-        <div className="min-height-screen container mx-auto px-2 my-6">
+        <div className="container px-2 mx-auto my-6 min-height-screen">
           <Filters
             onFilterChange={handleFilterChange}
             genres={genresData?.genres || []}
           />
           <div className="w-full flex-colo min-h-[60vh] bg-dry rounded-lg p-4">
-            <p className="text-red-500 text-lg mb-4">
+            <p className="mb-4 text-lg text-red-500">
               {error?.message || "Error loading movies. Please try again."}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-subMain text-white rounded hover:bg-opacity-90"
+              className="px-4 py-2 text-white rounded bg-subMain hover:bg-opacity-90"
             >
               Retry
             </button>
@@ -103,12 +103,12 @@ function MoviesPage() {
 
   return (
     <Layout>
-      <div className="min-height-screen container mx-auto px-2 my-6">
+      <div className="container px-2 mx-auto my-6 min-height-screen">
         <Filters
           onFilterChange={handleFilterChange}
           genres={genresData?.genres || []}
         />
-        <p className="text-lg font-medium my-6">
+        <p className="my-6 text-lg font-medium">
           Showing{" "}
           <span className="font-bold text-subMain">{movies.length}</span> of{" "}
           <span className="font-bold">
@@ -119,7 +119,7 @@ function MoviesPage() {
 
         {movies.length > 0 ? (
           <>
-            <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-8 justify-center mt-6 sm:mt-10 sm:flex-row sm:flex-wrap">
               {movies.map(movie => (
                 <Movie
                   key={movie.id}
@@ -152,7 +152,7 @@ function MoviesPage() {
             </div>
           </>
         ) : (
-          <div className="w-full flex-colo my-20 text-lg text-dryGray">
+          <div className="my-20 w-full text-lg flex-colo text-dryGray">
             No movies found matching your filters
           </div>
         )}

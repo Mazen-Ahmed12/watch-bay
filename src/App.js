@@ -5,8 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import DrawerContext from "./Context/DrawerContext";
 import AboutUs from "./Screens/AboutUs";
 import ContactUs from "./Screens/ContactUS";
-import AddMovie from "./Screens/Dashboard/Admin/AddMovies";
-import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
+import Dashboard from "./Screens/Dashboard/Dashboard";
 import FavoritesMovies from "./Screens/Dashboard/FavoritesMovies";
 import Password from "./Screens/Dashboard/Password";
 import Profile from "./Screens/Dashboard/Profile";
@@ -44,7 +43,6 @@ function App() {
             <Route path="/password" element={<Password />} />
             <Route path="/favorites" element={<FavoritesMovies />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/AddMovie" element={<AddMovie />} />
             <Route path="/popular-movies" element={<PopularMoviesPage />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="*" element={<NotFound />} />

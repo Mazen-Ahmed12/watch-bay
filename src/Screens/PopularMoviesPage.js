@@ -87,7 +87,7 @@ export default function PopularMoviesPage() {
       <div className="p-2 min-h-screen lg:px-4">
         <div className="container mx-auto">
           <Titles title="Popular Movies" Icon={MdFavorite} />
-          <div className="grid grid-cols-1 gap-10 mt-6 sm:mt-12 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
+          <div className="flex flex-col gap-8 justify-center mt-6 sm:mt-10 sm:flex-row sm:flex-wrap">
             {movies.map((movie) => (
               <Movie 
                 key={`${movie.id}-${movie.title}`}

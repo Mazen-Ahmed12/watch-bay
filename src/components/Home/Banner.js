@@ -53,7 +53,7 @@ function Banner() {
         speed={2000}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full h-80 xl:h-128 lg:h-112 sm:h-96"
+        className="w-full h-104 xl:h-148 lg:h-132 sm:h-118"
       >
         {trendingMovies.map((movie) => (
           <SwiperSlide key={movie.id} className="overflow-hidden relative">

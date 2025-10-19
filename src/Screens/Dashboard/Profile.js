@@ -21,11 +21,17 @@ function Profile() {
           type="email"
           bg={true}
         />
-        <div className="flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4">
-          <button className="bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto">
+        <div className="flex flex-col-reverse flex-wrap gap-2 justify-between items-center my-4 sm:flex-row">
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-3 w-full font-medium text-white rounded border bg-subMain transitions hover:bg-main border-subMain sm:w-auto"
+          >
             Delete Account
           </button>
-          <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto">
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-3 w-full font-medium text-white rounded border bg-main transitions hover:bg-subMain border-subMain sm:w-auto"
+          >
             Update Profile
           </button>
         </div>

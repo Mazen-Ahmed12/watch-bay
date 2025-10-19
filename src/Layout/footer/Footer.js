@@ -77,22 +77,22 @@ function Footer() {
   ];
   return (
     <div className="bg-dry py-4 bprder=t-2 border-black ">
-      <div className="container mx-auto px-2 ">
-        <div className="grid grid-cols-2 md:grid-cols-4 1g:grid-cols-9 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-10 justify-between ">
+      <div className="container px-2 mx-auto">
+        <div className="flex flex-col gap-5 justify-between py-10 sm:gap-9 lg:gap-11 xl:gap-7 md:flex-row lg:flex-row">
           {links.map((link, index) => (
             <div
               key={index}
-              className="col-span-1 md:col-span-1 1g:col-span-2 pb-3.5 sm:pb-0"
+              className="pb-3.5 w-full md:w-1/2 lg:w-1/4 xl:w-1/5 sm:pb-0"
             >
-              <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 1g:mb-6 pb-0.5">
+              <h3 className="pb-0.5 mb-4 font-medium text-md lg:leading-7 sm:mb-5 lg:mb-6">
                 {link.title}
               </h3>
-              <ul className="text-sm flex flex-col space-y-3">
+              <ul className="flex flex-col space-y-3 text-sm">
                 {link.links.map((text, index) => (
                   <li key={index} className="flex items-baseline">
                     <Link
                       to={text.link}
-                      className="text-border inline-block w-full  hover:text-subMain"
+                      className="inline-block w-full text-border hover:text-subMain"
                     >
                       {text.name}
                     </Link>
@@ -101,22 +101,22 @@ function Footer() {
               </ul>
             </div>
           ))}
-          <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-1 1g:col-span-3 m-auto">
+          <div className="pb-3.5 w-full md:w-1/2 lg:w-1/3 sm:pb-0">
             <Link to="/">
               <img
                 src={`${process.env.PUBLIC_URL}/watchbay.jpg`}
                 alt="logo"
-                className="w-2/4 h-15 object-cover"
+                className="object-fill w-2/4 h-15"
               />
             </Link>
-            <p className="leading-7 text-sm text-border mt-3">
+            <p className="mt-3 text-sm leading-7 text-border">
               <span>
-                75 hamdy street, <br /> cairo, Egypt
+                 cairo, Egypt
               </span>
               <br />
               <span>tell" +21848613512</span>
               <br />
-              <span>Email: mgasdfrew@gmail.com</span>
+              <span>Email: watch-bay@gmail.com</span>
             </p>
           </div>
         </div>

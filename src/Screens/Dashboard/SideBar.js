@@ -1,7 +1,7 @@
 import { BsFillGridFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
-import { RiLockPasswordLine, RiMovie2Fill } from "react-icons/ri";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 
@@ -16,11 +16,6 @@ function SideBar({ children }) {
       name: "Favorites Movies",
       link: "/favorites",
       icon: FaHeart,
-    },
-    {
-      name: "Add Movie",
-      link: "/addmovie",
-      icon: RiMovie2Fill,
     },
     {
       name: "Update Profile",

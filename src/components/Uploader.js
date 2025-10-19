@@ -14,13 +14,13 @@ function Uploader() {
     <div className="w-full text-center">
       <div
         {...getRootProps()}
-        className="px-6 py-8 border-2 border-border border-dashed bg-main rounded-md cursor-pointer"
+        className="px-6 py-8 rounded-md border-2 border-dashed cursor-pointer border-border bg-main"
       >
         <input {...getInputProps()} />
-        <span className="mx-auto flex-colo text-subMain text-3xl">
+        <span className="mx-auto text-3xl flex-colo text-subMain">
           <FiUploadCloud />
         </span>
-        <p className="text-sm mt-2">Drag your image here</p>
+        <p className="mt-2 text-sm">Drag your image here</p>
         <em className="text-xs text-border">
           (only .jpg and .png files will be accepted)
         </em>
