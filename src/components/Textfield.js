@@ -12,26 +12,26 @@ export const TextFields = ({ title, placeholder, type }) => {
       <TextField
         placeholder={placeholder}
         type={type}
-        variant="outlined" // Options: "outlined", "filled", "standard"
-        fullWidth // Adds responsive width (if required)
+        variant="outlined" 
+        fullWidth 
         sx={{
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
-              borderColor: "#4B5563", // Border color
+              borderColor: "#4B5563", 
               borderWidth: "1px",
             },
             "&:hover fieldset": {
-              borderColor: "#4B5563", // Border color on hover
+              borderColor: "#4B5563", 
               borderWidth: "1px",
             },
             "&.Mui-focused fieldset": {
-              borderColor: "#4B5563", // Border color when focused
+              borderColor: "#4B5563", 
               borderWidth: "1px",
             },
             backgroundColor: "#080A1A",
           },
           "& .MuiInputBase-input": {
-            color: "#FFFFFF", // Text color inside the input
+            color: "#FFFFFF", 
           },
         }}
       />

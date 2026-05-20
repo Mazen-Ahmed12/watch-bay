@@ -10,7 +10,6 @@ function Layout({ children }) {
         <Header />
         {children}
         <Footer />
-        {/* mobile footer*/} 
         <MobileFooter/>
       </div>
     </>

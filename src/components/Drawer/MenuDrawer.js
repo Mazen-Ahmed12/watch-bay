@@ -2,7 +2,6 @@ import {
   Facebook,
   Info,
   Instagram,
-  MovieCreation,
   Phone,
   WhatsApp,
 } from "@mui/icons-material";

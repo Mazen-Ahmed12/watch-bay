@@ -9,7 +9,6 @@ const CastImage = React.memo(({ src, alt }) => {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef();
 
-  // Use lower quality image for faster loading
   const imageUrl = src || null;
 
   return (
