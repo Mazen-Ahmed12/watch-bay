@@ -26,24 +26,25 @@ export default function PopularMoviesPage() {
     }
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // Set up intersection observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {
-      root: null,
-      rootMargin: '20px',
-      threshold: 0.1,
-    });
+   // Set up intersection observer
+   useEffect(() => {
+     const observer = new IntersectionObserver(handleObserver, {
+       root: null,
+       rootMargin: '20px',
+       threshold: 0.1,
+     });
 
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
+     const loaderElement = loaderRef.current;
+     if (loaderElement) {
+       observer.observe(loaderElement);
+     }
 
-    return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
-      }
-    };
-  }, [handleObserver]);
+     return () => {
+       if (loaderElement) {
+         observer.unobserve(loaderElement);
+       }
+     };
+   }, [handleObserver]);
 
   const movies = data?.pages.flatMap(page => page?.results || []) || [];
   const isLoading = status === 'loading';
